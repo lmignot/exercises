@@ -1,4 +1,6 @@
-// Exercise 7
+// 07 Naive sorting
+//
+// without arrays and other sorting mechanisms
 
 String str = "";
 

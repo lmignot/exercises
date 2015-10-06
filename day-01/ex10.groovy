@@ -1,4 +1,7 @@
-// Exercise 10
+// 10 Going up or down
+//
+// Determine if a series of positive numbers is
+// in either ascending or descending order
 
 boolean finished = false
 boolean inOrder = true
@@ -19,8 +22,11 @@ while (!finished) {
 	}
 
 	if(current > prev) {
+        // current number is greater, we're going up
+        // we are in order if the first number added to the iteration match
 		inOrder = (first + iteration == current)
 	} else if (current < prev) {
+        // we are going down, so calculation is first - iteration
 		inOrder = (first - iteration == current)
 	} else {
 		inOrder = false

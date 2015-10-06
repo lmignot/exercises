@@ -1,7 +1,10 @@
-
-// given initial number less than 10
+// 03 YANL
+//
+// given user-provided number less than 10
 // asks for additional number(s) greater than 0
-// and prints out if not equal to 1
+// and prints out the number if not equal to 1
+//
+// prints out the string "finished" when the loop has completed
 
 String str = System.console().readLine();
 int i = Integer.parseInt(str);
