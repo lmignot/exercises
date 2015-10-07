@@ -1,103 +1,242 @@
-// Exercise 11
+import com.thoughtworks.xstream.converters.basic.IntConverter
+
+import java.lang.reflect.Array
+
+// 11 Poker
 
 // read 5 cards
 // ask for rank and suit
 // validate else ask to re-enter
+// sort while reading
 
-// get best hand
-// output best hand
+// store suits as variables for comparison
+// easier to re-use and fix if typos
+String spades = "spades", clubs = "clubs", hearts = "hearts", diamonds = "diamonds";
 
-int hands = 1;
-String rank1, rank2, rank3, rank4, rank5, 
-       suit1, suit2, suit3, suit4, suit5;
+int rank1 = 0, rank2 = 0, rank3 = 0, rank4 = 0, rank5 = 0;
+String suit1 = "", suit2 = "", suit3 = "", suit4 = "", suit5 = "";
 
-String spades = "spades",
-       clubs = "clubs",
-       hearts = "hearts",
-       diamonds = "diamonds";
+// loop reference
+int capturedHands = 0;
 
-println "Enter the first card's rank (1-10,J,Q,K):";
-rank1 = System.console().readLine().toLowerCase()
+String str;
+int currentRank;
+String currentSuit;
+//String[] testNums = ["9", "9", "10", "4", "k"];
+//String[] testSuits = ["spades","clubs","hearts","hearts","spades"];
 
-while (rank1 != "1" && rank1 != "2" && rank1 != "3" && rank1 != "4" && rank1 != "5" && rank1 != "6" && rank1 != "7" && rank1 != "8" && rank1 != "9" && rank1 != "10" && rank1 != "j" && rank1 != "q" && rank1 != "k") {
-	println "That's not a valid rank, please re-enter:";
-	rank1 = System.console().readLine().toLowerCase();
+while (capturedHands < 5) {
+    println "Enter a card's rank (1-10, J, Q, K):";
+    str = System.console().readLine().toLowerCase();
+//    str = testNums[capturedHands]
+
+    // convert the ranks to integers for easier sorting
+    if (str == "k" ) {
+        currentRank = 13;
+    } else if (str == "q") {
+        currentRank = 12;
+    } else if (str == "j") {
+        currentRank = 11;
+    } else {
+        currentRank = Integer.parseInt(str);
+    }
+
+    // validate rank and loop again if invalid
+    if (currentRank <1 && currentRank > 13) {
+        println "That's not a valid rank, please re-enter:";
+        continue;
+    }
+
+    // capture the suit for the current card
+    println "And the suit (spades, clubs, hearts, diamonds):";
+    currentSuit = System.console().readLine().toLowerCase();
+//    currentSuit = testSuits[capturedHands];
+
+    // if they have a valid rank but not a valid suit
+    // inner loop to re-capture the suit and avoid having to re-capture the whole card
+    while (currentSuit != spades && currentSuit != clubs && currentSuit != hearts && currentSuit != diamonds) {
+        println "That's not a valid suit, please re-enter (spades, clubs, hearts, diamonds):";
+        currentSuit = System.console().readLine().toLowerCase();
+//        currentSuit = testSuits[capturedHands];
+    }
+
+    int tempRank;
+    String tempSuit;
+
+    if (capturedHands == 0) {
+        // first loop, this is the highest card so far
+        rank5 = currentRank;
+        suit5 = currentSuit;
+    } else if (capturedHands == 1) {
+        // 2nd loop, if higher than highest than switch places
+        if (currentRank > rank5) {
+            rank4 = rank5;
+            suit4 = suit5;
+            rank5 = currentRank;
+            suit5 = currentSuit;
+        } else {
+            rank4 = currentRank;
+            suit4 = currentSuit;
+        }
+    } else if (capturedHands == 2) {
+        // if current card is greater than the current highest card, switch up
+        if (currentRank > rank5) {
+            rank3 = rank4;
+            suit3 = suit4;
+            rank4 = rank5;
+            suit4 = suit5;
+            rank5 = currentRank;
+            suit5 = currentSuit;
+        } else if (currentRank > rank4) {
+            // not gt 5 but gt 4
+            rank3 = rank4;
+            suit3 = suit4;
+            rank4 = currentRank;
+            suit4 = currentSuit;
+        } else {
+            rank3 = currentRank;
+            suit3 = currentSuit;
+        }
+    } else if (capturedHands == 3) {
+        // if current card is greater than the current highest card, switch up
+        if (currentRank > rank5) {
+            rank2 = rank3;
+            suit2 = suit3;
+            rank3 = rank4;
+            suit3 = suit4;
+            rank4 = rank5;
+            suit4 = suit5;
+            rank5 = currentRank;
+            suit5 = currentSuit;
+        } else if (currentRank > rank4) {
+            // not gt 5 but gt 4
+            rank2 = rank3;
+            suit2 = suit3;
+            rank3 = rank4;
+            suit3 = suit4;
+            rank4 = currentRank;
+            suit4 = currentSuit;
+        } else if (currentRank > rank3) {
+            // not gt 4 but gt 3
+            rank2 = rank3;
+            suit2 = suit3;
+            rank3 = currentRank;
+            suit3 = currentSuit;
+        } else {
+            rank2 = currentRank;
+            suit2 = currentSuit;
+        }
+    } else if (capturedHands == 4) {
+        // if current card is greater than the current highest card, switch up
+        if (currentRank > rank5) {
+            rank1 = rank2;
+            suit1 = suit2;
+            rank2 = rank3;
+            suit2 = suit3;
+            rank3 = rank4;
+            suit3 = suit4;
+            rank4 = rank5;
+            suit4 = suit5;
+            rank5 = currentRank;
+            suit5 = currentSuit;
+        } else if (currentRank > rank4) {
+            // not gt 5 but gt 4
+            rank1 = rank2;
+            suit1 = suit2;
+            rank2 = rank3;
+            suit2 = suit3;
+            rank3 = rank4;
+            suit3 = suit4;
+            rank4 = currentRank;
+            suit4 = currentSuit;
+        } else if (currentRank > rank3) {
+            // not gt 4 but gt 3
+            rank1 = rank2;
+            suit1 = suit2;
+            rank2 = rank3;
+            suit2 = suit3;
+            rank3 = currentRank;
+            suit3 = currentSuit;
+        } else if (currentRank > rank2) {
+            // not gt 3 but gt 2
+            rank1 = rank2;
+            suit1 = suit2;
+            rank2 = currentRank;
+            suit2 = currentSuit;
+        } else {
+            rank1 = currentRank;
+            suit1 = currentSuit;
+        }
+    }
+
+    capturedHands++;
 }
 
-println "And the suit (spades, clubs, hearts, diamonds):";
-suit1 = System.console().readLine().toLowerCase();
+println "Your cards are:";
+println rank1 + " of " + suit1;
+println rank2 + " of " + suit2;
+println rank3 + " of " + suit3;
+println rank4 + " of " + suit4;
+println rank5 + " of " + suit5;
 
-while (suit1 != spades && suit1 != clubs && suit1 != hearts && suit1 != diamonds) {
-	println "That's not a valid suit, please re-enter:";
-	suit1 = System.console().readLine().toLowerCase();
+// TODO: get the highest hand
+// and return it
+
+String highestHand = "";
+
+// first check for straight flush or straight
+
+if (rank1 + 1 == rank2 && rank2 + 1 == rank3 && rank3 + 1 == rank4 && rank4 + 1 == rank5) {
+    if (suit1 == suit2 && suit1 == suit3 && suit1 == suit4 && suit1 == suit5) {
+        highestHand = "Straight Flush";
+    } else {
+        highestHand = "Straight";
+    }
+} else {
+    // check for Flush
+    if (suit1 == suit2 && suit2 == suit3 && suit3 == suit4 && suit4 == suit5) {
+        highestHand = "Flush";
+    } else if ((rank1 == rank2 && rank1 == rank3 && rank1 == rank4) || (rank2 == rank3 && rank2 == rank4 && rank2 ==
+            rank5)) {
+        // we've sorted the cards so the options are either X0000 or 0000X
+        highestHand = "4 of a kind";
+    } else if (rank1 == rank2 && rank1 == rank3) {
+        // if 11100, full house
+        if (rank4 == rank5) {
+            highestHand = "Full House";
+        } else {
+            highestHand = "3 of a kind";
+        }
+    } else if (rank3 == rank4 && rank3 == rank5) {
+        // if 00111
+        if (rank1 == rank2) {
+            highestHand = "Full House";
+        } else {
+            highestHand = "3 of a kind";
+        }
+    } else if (rank2 == rank3 && rank2 == rank4) {
+        // if X000X
+        highestHand = "3 of a kind";
+    } else if (rank1 == rank2) {
+        // if 00XXX
+        if (rank3 == rank4 || rank4 == rank5) {
+            // XX00X or XXX00
+            highestHand = "2 pair";
+        } else {
+            highestHand = "Pair";
+        }
+    } else if (rank2 == rank3) {
+        // X00XX
+        if (rank4 == rank5) {
+            // X0011
+            highestHand = "2 pair";
+        } else {
+            highestHand = "Pair";
+        }
+    } else if (rank3 == rank4 || rank4 == rank5) {
+        // XX00X or XXX00
+        highestHand = "Pair";
+    }
 }
 
-
-println "Enter the second card's rank (1-10,J,Q,K):";
-rank2 = System.console().readLine().toLowerCase();
-
-while (rank2 != "1" && rank2 != "2" && rank2 != "3" && rank2 != "4" && rank2 != "5" && rank2 != "6" && rank2 != "7" && rank2 != "8" && rank2 != "9" && rank2 != "10" && rank2 != "j" && rank2 != "q" && rank2 != "k") {
-	println "That's not a valid rank, please re-enter:";
-	rank2 = System.console().readLine().toLowerCase();
-}
-
-println "And the suit (spades, clubs, hearts, diamonds):";
-suit2 = System.console().readLine().toLowerCase();
-
-while (suit2 != spades && suit2 != clubs && suit2 != hearts && suit2 != diamonds) {
-	println "That's not a valid suit, please re-enter:";
-	suit2 = System.console().readLine().toLowerCase();
-}
-
-
-println "Enter the third card's rank (1-10,J,Q,K):";
-rank3 = System.console().readLine().toLowerCase();
-
-while (rank3 != "1" && rank3 != "2" && rank3 != "3" && rank3 != "4" && rank3 != "5" && rank3 != "6" && rank3 != "7" && rank3 != "8" && rank3 != "9" && rank3 != "10" && rank3 != "j" && rank3 != "q" && rank3 != "k") {
-	println "That's not a valid rank, please re-enter:";
-	rank3 = System.console().readLine().toLowerCase();
-}
-
-println "And the suit (spades, clubs, hearts, diamonds):";
-suit3 = System.console().readLine().toLowerCase();
-
-while (suit3 != spades && suit3 != clubs && suit3 != hearts && suit3 != diamonds) {
-	println "That's not a valid suit, please re-enter:";
-	suit3 = System.console().readLine().toLowerCase();
-}
-
-
-println "Enter the fourth card's rank (1-10,J,Q,K):";
-rank4 = System.console().readLine().toLowerCase();
-
-while (rank4 != "1" && rank4 != "2" && rank4 != "3" && rank4 != "4" && rank4 != "5" && rank4 != "6" && rank4 != "7" && rank4 != "8" && rank4 != "9" && rank4 != "10" && rank4 != "j" && rank4 != "q" && rank4 != "k") {
-	println "That's not a valid rank, please re-enter:";
-	rank4 = System.console().readLine().toLowerCase();
-}
-
-println "And the suit (spades, clubs, hearts, diamonds):";
-suit4 = System.console().readLine().toLowerCase();
-
-while (suit4 != spades && suit4 != clubs && suit4 != hearts && suit4 != diamonds) {
-	println "That's not a valid suit, please re-enter:";
-	suit4 = System.console().readLine().toLowerCase();
-}
-
-
-println "Enter the fifth card's rank (1-10,J,Q,K):";
-rank5 = System.console().readLine().toLowerCase();
-
-while (rank5 != "1" && rank5 != "2" && rank5 != "3" && rank5 != "4" && rank5 != "5" && rank5 != "6" && rank5 != "7" && rank5 != "8" && rank5 != "9" && rank5 != "10" && rank5 != "j" && rank5 != "q" && rank5 != "k") {
-	println "That's not a valid rank, please re-enter:";
-	rank5 = System.console().readLine().toLowerCase();
-}
-
-println "And the suit (spades, clubs, hearts, diamonds):";
-suit5 = System.console().readLine().toLowerCase();
-
-while (suit5 != spades && suit5 != clubs && suit5 != hearts && suit5 != diamonds) {
-	println "That's not a valid suit, please re-enter:";
-	suit5 = System.console().readLine().toLowerCase();
-}
-
-println "Your hand is " + rank1 + " of " + suit1 + ", " + rank2 + " of " + suit2 + ", " + rank3 + " of " + suit3 + ", " + rank4 + " of " + suit4 + ", " + rank5 + " of " + suit5 + ".";
+println "Your highest hand is: " + highestHand;
