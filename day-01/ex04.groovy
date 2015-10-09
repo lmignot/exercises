@@ -22,7 +22,12 @@ if (input <= 1) {
 
     while (i > 2) {
         i--;
-        isPrime = (input % i != 0);
+        if (input % i == 0) {
+            isPrime = false;
+            break;
+        } else {
+            isPrime = true;
+        }
     }
 }
 
