@@ -3,7 +3,7 @@
 //
 
 // start with 3 as we know 2 is prime and 1 is not
-String primeOutput = "2, ";
+def primeOutput = [2];
 int primes = 1;
 int targetPrimes = 1000;
 int num = 3;
@@ -23,12 +23,12 @@ while (primes < targetPrimes) {
     }
 
     if (isPrime) {
-        primeOutput = primeOutput + num + ((num + 1 == targetPrimes) ? "" : ", ");
+        primeOutput.push(num)
         primes++;
     }
 
     num++;
 }
 
-println primeOutput;
+println primeOutput.join(", ");
 println "total prime numbers: " + primes;
