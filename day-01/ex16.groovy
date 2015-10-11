@@ -22,34 +22,37 @@ while (!finished) {
     p1Entry = result.substring(0,1);
     p2Entry = result.substring(1);
 
-    println "Player one chose " + (p1Entry == "p" ? "Paper" : (p1Entry == "s" ? "Scissors" : "Rock"))
-    println "Player two chose " + (p2Entry == "p" ? "Paper" : (p2Entry == "s" ? "Scissors" : "Rock"))
-
     switch (result) {
         // handle draws first
         case "ss":
         case "rr":
         case "pp":
+            println "Player one chose " + (p1Entry == "p" ? "Paper" : (p1Entry == "s" ? "Scissors" : "Rock"))
+            println "Player two chose " + (p2Entry == "p" ? "Paper" : (p2Entry == "s" ? "Scissors" : "Rock"))
             println "That's a draw."
             draws++;
             break;
         case "pr":
         case "sp":
         case "rs":
+            println "Player one chose " + (p1Entry == "p" ? "Paper" : (p1Entry == "s" ? "Scissors" : "Rock"))
+            println "Player two chose " + (p2Entry == "p" ? "Paper" : (p2Entry == "s" ? "Scissors" : "Rock"))
             println "Player one won that round."
             scoreP1++;
             break;
         case "ps":
         case "rp":
         case "sr":
+            println "Player one chose " + (p1Entry == "p" ? "Paper" : (p1Entry == "s" ? "Scissors" : "Rock"))
+            println "Player two chose " + (p2Entry == "p" ? "Paper" : (p2Entry == "s" ? "Scissors" : "Rock"))
             println "Player two won that round."
             scoreP2++;
             break;
         default:
-            "We could not recognise that entry, please try again."
+            println "We could not recognise that entry, please try again."
             break;
     }
-
+    
     if (scoreP1 - scoreP2 >= 3) {
         winner = "Player 1";
         finished = true;
