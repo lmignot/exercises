@@ -1,7 +1,3 @@
-import com.thoughtworks.xstream.converters.basic.IntConverter
-
-import java.lang.reflect.Array
-
 // 11 Poker
 
 // read 5 cards
@@ -179,13 +175,9 @@ println rank3 + " of " + suit3;
 println rank4 + " of " + suit4;
 println rank5 + " of " + suit5;
 
-// TODO: get the highest hand
-// and return it
-
 String highestHand = "";
 
 // first check for straight flush or straight
-
 if (rank1 + 1 == rank2 && rank2 + 1 == rank3 && rank3 + 1 == rank4 && rank4 + 1 == rank5) {
     if (suit1 == suit2 && suit1 == suit3 && suit1 == suit4 && suit1 == suit5) {
         highestHand = "Straight Flush";
