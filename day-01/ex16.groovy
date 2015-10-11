@@ -52,7 +52,7 @@ while (!finished) {
             println "We could not recognise that entry, please try again."
             break;
     }
-    
+
     if (scoreP1 - scoreP2 >= 3) {
         winner = "Player 1";
         finished = true;
