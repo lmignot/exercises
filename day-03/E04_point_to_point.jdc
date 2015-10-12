@@ -1,25 +1,66 @@
 // 4 point to point
 //
 
+println("Enter X coordinates for point A (eg 2.55): ");
+double aX = getCoordFromInput();
+println("Enter Y coordinates for point A: ");
+double aY = getCoordFromInput();
+
+println("Enter X coordinates for point B: ");
+double bX = getCoordFromInput();
+println("Enter Y coordinates for point B: ");
+double bY = getCoordFromInput();
+
+println("Enter X coordinates for point C: ");
+double cX = getCoordFromInput();
+println("Enter Y coordinates for point C: ");
+double cY = getCoordFromInput();
+
+Point pointA = new Point(aX, aY);
+Point pointB = new Point(bX, bY);
+Point pointC = new Point(cX, cY);
+
+double distanceAB = getDistanceBetweenPoints(pointA, pointB);
+double distanceAC = getDistanceBetweenPoints(pointA, pointC);
+double distanceBC = getDistanceBetweenPoints(pointB, pointC);
+
+if (distanceAB > distanceAC) {
+    // AB > AC
+    if (distanceBC > distanceAC) {
+        println("The closest points are A and C");
+    } else {
+        println("The closest points are B and C");
+    }
+} else {
+    // AC > AB
+    if (distanceBC > distanceAC) {
+        println("The closest points are A and C");
+    } else {
+        println("The closest points are A and B");
+    }
+}
+
+double getDistanceBetweenPoints(Point _a, Point _b) {
+    double xs = _a.x - _b.x;
+    double ys = _a.y - _b.y;
+
+    xs = xs * xs;
+    ys = ys * ys;
+
+    return Math.sqrt(xs + ys);
+}
+
+double getCoordFromInput() {
+    String str = readLine();
+    return Double.parseDouble(str);
+}
+
 class Point {
     double x;
     double y;
-}
 
-Point pointA;
-Point pointB;
-Point pointC;
-
-println("Enter X,Y coordinates for point A (eg 2.55,-3): ");
-pointA = getCoords();
-println("Enter point B: ");
-double num2 = getInput();
-
-
-// Input method
-Point getCoord() {
-    String str = readLine();
-    int index = str.indexOf(",");
-
-    Double.parseDouble(str);
+    Point (double a, double b) {
+        x = a;
+        y = b;
+    }
 }
