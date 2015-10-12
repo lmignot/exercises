@@ -1,0 +1,49 @@
+// 6 Inside or outside
+//
+
+Rectangle myRectangle = new Rectangle();
+myRectangle.upLeft = new Point();
+myRectangle.downRight = new Point();
+
+Point myCheckPoint = new Point();
+
+println("Enter X coordinates for rectangle top left: ");
+myRectangle.upLeft.x = readDouble();
+println("Enter Y coordinates for rectangle top left: ");
+myRectangle.upLeft.y = readDouble();
+
+println("Enter X coordinates for rectangle bottom right: ");
+myRectangle.downRight.x = readDouble();
+println("Enter Y coordinates for rectangle bottom right: ");
+myRectangle.downRight.y = readDouble();
+
+println("Enter X coordinates for a point: ");
+myCheckPoint.x = readDouble();
+println("Enter Y coordinates for a point: ");
+myCheckPoint.y = readDouble();
+
+boolean myPointIsInside = isPointInsideRectangle(myRectangle, myCheckPoint);
+
+println("The point is " + (myPointIsInside ? "inside" : "outside") + " the rectangle.");
+
+boolean isPointInsideRectangle(Rectangle rect, Point point) {
+    boolean isInside = false;
+    if (point.x >= rect.upLeft.x && point.x <= rect.downRight.x) {
+        // it's within the x bounds
+        if (point.y >= rect.upLeft.y && point.y <= rect.downRight.y) {
+            // it's within the y bounds
+            isInside = true;
+        }
+    }
+    return isInside;
+}
+
+class Point {
+    double x;
+    double y;
+}
+
+class Rectangle {
+    Point upLeft;
+    Point downRight;
+}
