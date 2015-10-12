@@ -1,0 +1,25 @@
+// 4 point to point
+//
+
+class Point {
+    double x;
+    double y;
+}
+
+Point pointA;
+Point pointB;
+Point pointC;
+
+println("Enter X,Y coordinates for point A (eg 2.55,-3): ");
+pointA = getCoords();
+println("Enter point B: ");
+double num2 = getInput();
+
+
+// Input method
+Point getCoord() {
+    String str = readLine();
+    int index = str.indexOf(",");
+
+    Double.parseDouble(str);
+}
