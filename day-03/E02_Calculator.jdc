@@ -1,0 +1,59 @@
+// 2 Calculator
+//
+//
+
+println("Enter the first number: ");
+double num1 = getInput();
+println("Enter the second number: ");
+double num2 = getInput();
+
+println("What would you like to do with your numbers?");
+
+println("1: Addition");
+println("2: Subtraction");
+println("3: Multiplication");
+println("4: Division");
+println("0: Exit");
+
+int selection = Integer.parseInt(readLine());
+
+switch(selection) {
+    case 1:
+        println(num1 + " plus " + num2 + " equals " + add(num1, num2));
+        break;
+    case 2:
+        println(num1 + " minus " + num2 + " equals " + subtract(num1, num2));
+        break;
+    case 3:
+        println(num1 + " times " + num2 + " equals " + multiply(num1, num2));
+        break;
+    case 4:
+        println(num1 + " divided by " + num2 + " equals " + divide(num1, num2));
+        break;
+    case 0:
+    default:
+        break;
+}
+
+// Input method
+double getInput() {
+    String str = readLine();
+    return Double.parseDouble(str);
+}
+
+// Arithmetic Methods
+double add(double addend1, double addend2) {
+    return addend1 + addend2;
+}
+
+double subtract(double minuend, double subtrahend) {
+    return minuend - subtrahend;
+}
+
+double divide(double dividend, double divisor) {
+    return dividend / divisor;
+}
+
+double multiply(double multiplicand, double multiplier) {
+    return multiplicand * multiplier;
+}
