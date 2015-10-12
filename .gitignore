@@ -13,3 +13,6 @@ hs_err_pid*
 
 # editor files
 .idea/
+
+# java files from javadecaf exercises
+day-03/*.java
