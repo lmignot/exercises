@@ -1,0 +1,67 @@
+// 7 Overlaps
+//
+
+Rectangle rectangleA = createAndGetPointsForRectangle("1st");
+Rectangle rectangleB = createAndGetPointsForRectangle("2nd");
+
+Point myCheckPoint = new Point();
+
+println("Enter X coordinates for a point: ");
+myCheckPoint.x = readDouble();
+println("Enter Y coordinates for a point: ");
+myCheckPoint.y = readDouble();
+
+boolean myPointIsInsideA = isPointInsideRectangle(rectangleA, myCheckPoint);
+boolean myPointIsInsideB = isPointInsideRectangle(rectangleB, myCheckPoint);
+
+if(myPointIsInsideA && myPointIsInsideB) {
+    println("The point is inside both rectangles");
+} else {
+    if(myPointIsInsideA) {
+        println("The point is inside the 1st rectangle");
+    } else if (myPointIsInsideB) {
+        println("The point is inside the 2nd rectangle");
+    } else {
+        println("The point is outside both rectangles");
+    }
+}
+
+Rectangle createAndGetPointsForRectangle(String whichRect) {
+    Rectangle rect = new Rectangle();
+    rect.upLeft = new Point();
+    rect.downRight = new Point();
+
+    println("Enter X coordinates for " + whichRect + " rectangle top left: ");
+    rect.upLeft.x = readDouble();
+    println("Enter Y coordinates for " + whichRect + " rectangle top left: ");
+    rect.upLeft.y = readDouble();
+
+    println("Enter X coordinates for " + whichRect + " bottom right: ");
+    rect.downRight.x = readDouble();
+    println("Enter Y coordinates for " + whichRect + " bottom right: ");
+    rect.downRight.y = readDouble();
+
+    return rect;
+}
+
+boolean isPointInsideRectangle(Rectangle rect, Point point) {
+    boolean isInside = false;
+    if (point.x >= rect.upLeft.x && point.x <= rect.downRight.x) {
+        // it's within the x bounds
+        if (point.y >= rect.upLeft.y && point.y <= rect.downRight.y) {
+            // it's within the y bounds
+            isInside = true;
+        }
+    }
+    return isInside;
+}
+
+class Point {
+    double x;
+    double y;
+}
+
+class Rectangle {
+    Point upLeft;
+    Point downRight;
+}
