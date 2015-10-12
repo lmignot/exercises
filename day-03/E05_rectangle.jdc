@@ -1,0 +1,34 @@
+// 5 Rectangle
+//
+
+Rectangle myRectangle = new Rectangle();
+myRectangle.upLeft = new Point();
+myRectangle.downRight = new Point();
+
+println("Enter X coordinates for point A: ");
+myRectangle.upLeft.x = readDouble();
+println("Enter Y coordinates for point A: ");
+myRectangle.upLeft.y = readDouble();
+
+println("Enter X coordinates for point B: ");
+myRectangle.downRight.x = readDouble();
+println("Enter Y coordinates for point B: ");
+myRectangle.downRight.y = readDouble();
+
+double height = myRectangle.downRight.y - myRectangle.upLeft.y;
+double width = myRectangle.downRight.x - myRectangle.upLeft.x;
+
+double area = height * width;
+double perimeter = 2 * (width + height);
+
+println("The area of the rectangle is " + area + " and the perimeter is " + perimeter);
+
+class Point {
+    double x;
+    double y;
+}
+
+class Rectangle {
+    Point upLeft;
+    Point downRight;
+}
