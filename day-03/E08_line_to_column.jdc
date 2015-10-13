@@ -1,11 +1,26 @@
 // 8 Line To Column
 //
+char space = ' ';
 
 println("Enter some text:");
 String str = readLine();
-
 int len = str.length();
 
+String out = "";
+
 for (int i = 0; i < len; i++) {
-    println(str.charAt(i));
+
+    if (str.charAt(i) != space) {
+        out += str.charAt(i);
+    } else {
+        println(out);
+        // reset out to empty string
+        out = "";
+    }
+
+    // handle final word :)
+    if (i + 1 == len) {
+        println(out);
+    }
 }
+
