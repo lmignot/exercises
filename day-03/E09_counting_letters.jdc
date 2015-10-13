@@ -6,7 +6,8 @@ println("Enter some text:");
 String str = readLine();
 int len = str.length();
 int count = 0;
-String ref = "e";
+println("Enter a letter to count (only first letter will be used):");
+String ref = readLine();
 char letter = ref.charAt(0);
 
 for (int i = 0; i < len; i++) {
