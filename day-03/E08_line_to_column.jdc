@@ -1,0 +1,11 @@
+// 8 Line To Column
+//
+
+println("Enter some text:");
+String str = readLine();
+
+int len = str.length();
+
+for (int i = 0; i < len; i++) {
+    println(str.charAt(i));
+}
