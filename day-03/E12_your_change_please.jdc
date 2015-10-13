@@ -1,0 +1,9 @@
+// 12 Your change please
+//
+
+println("Enter the cost of the purchase:");
+double cost = readDouble();
+
+println("Enter the value of the note you paid with:");
+double paid = readDouble();
+
