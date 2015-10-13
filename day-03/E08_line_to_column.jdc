@@ -24,3 +24,16 @@ for (int i = 0; i < len; i++) {
     }
 }
 
+// spacer
+println("");
+println("");
+
+// alternative method :)
+// split the string to an array on whitespace characters
+
+String[] splitStr = str.split("\\s+");
+int arrLen = splitStr.length;
+
+for(int j = 0; j < arrLen; j++) {
+    println(splitStr[j]);
+}
