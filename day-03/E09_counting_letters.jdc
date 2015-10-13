@@ -1,0 +1,18 @@
+// 9 Counting Letters
+//
+
+println("Enter some text:");
+
+String str = readLine();
+int len = str.length();
+int count = 0;
+String ref = "e";
+char letter = ref.charAt(0);
+
+for (int i = 0; i < len; i++) {
+    if (str.charAt(i) == letter) {
+        count++;
+    }
+}
+
+println("The letter " + ref + " appeared " + count + " times in your text");
