@@ -1,0 +1,52 @@
+// 16 Text to number
+//
+// As we can't parse doubles, we need to get the 2 parts of the number
+// before and after the decimal point
+// and divide separately
+// Known bug, doesn't validate if the user provides an erroneous number: 12,455.544466
+
+println("Enter a number:");
+String str = readLine();
+
+int indexOfDecimal = str.indexOf(".");
+int naturalParts = 0;
+int decimalParts = 0;
+
+boolean hasDecimal = (indexOfDecimal > -1);
+
+// get the 'natural' part of the number
+naturalParts = getNaturalNumberFromString(hasDecimal ? str.substring(0, indexOfDecimal) : str);
+
+// divide by 2 and get the remainder
+// for any number divided by 2 the remainder is either 0 or 1
+int half = naturalParts / 2;
+
+// use to pad the remainder if == 1
+int decimalBase = 10;
+
+if (hasDecimal) {
+    String decimals = str.substring(indexOfDecimal + 1);
+    decimalParts = getNaturalNumberFromString(decimals);
+    decimalBase = (int) Math.pow(10, decimals.length() - 1);
+}
+
+// we are treating decimals as whole numbers at this stage
+// so 1 / 2 = 0.50 * 10E+1 = 50.0
+// however we might need to pad the remainder to account for unlimited number of decimals
+int remainder = (naturalParts % half == 1) ? (hasDecimal ? (5 * decimalBase) : 50) : 0;
+
+decimalParts = (decimalParts + remainder) / 2;
+
+println("Your number divided by 2 is: " + half + "." + decimalParts);
+
+// strip commas out of a number
+int getNaturalNumberFromString(String num) {
+    String newNum = "";
+    int len = num.length();
+    for (int i = 0; i < len; i++) {
+        if (num.charAt(i) != ',') {
+            newNum += num.charAt(i);
+        }
+    }
+    return Integer.parseInt(newNum);
+}
