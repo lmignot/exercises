@@ -1,0 +1,14 @@
+// 13 Palindrome
+//
+
+println("Enter some text:");
+String str = readLine();
+int len = str.length();
+
+String reverse = "";
+
+for (int i = len - 1; i >= 0; i--) {
+    reverse += str.charAt(i);
+}
+
+println("The text entered is" + (str.equals(reverse) ? "" : " not") + " a palindrome.");
