@@ -8,28 +8,125 @@
 //    user has paid less than cost > need more money
 //    user has paid more than cost > calculate change
 
-println("Enter the cost of the purchase:");
+println("How much did you spend?");
 double cost = readDouble();
 
-println("Enter the value of the note you paid with:");
+println("How much did you pay?");
 double paid = readDouble();
+
+println("");
 
 if (doublesAreApproximatelyEqual(cost, paid)) {
     println("You provided exact change, no change due.");
 } else if (doubleIsLessThanDouble(paid, cost)) {
     println("You have not paid enough to cover the cost.");
 } else {
-    
-}
+    double changeDue = paid - cost;
+    int fifties = 0;
+    int twenties = 0;
+    int tenners = 0;
+    int fivers = 0;
+    int twos = 0;
+    int ones = 0;
+    int p50 = 0;
+    int p20 = 0;
+    int p10 = 0;
+    int p5 = 0;
+    int p2 = 0;
+    int p1 = 0;
 
-double calcChangeDue(double cost, double paid) {
+    while ((changeDue > 50.00) || doublesAreApproximatelyEqual(changeDue, 50.00)) {
+        fifties++;
+        changeDue = changeDue - 50.00;
+    }
+    while ((changeDue > 20.00) || doublesAreApproximatelyEqual(changeDue, 20.00)) {
+        twenties++;
+        changeDue = changeDue - 20.00;
+    }
+    while ((changeDue > 10.00) || doublesAreApproximatelyEqual(changeDue, 10.00)) {
+        tenners++;
+        changeDue = changeDue - 10.00;
+    }
+    while ((changeDue > 5.00) || doublesAreApproximatelyEqual(changeDue, 5.00)) {
+        fivers++;
+        changeDue = changeDue - 5.00;
+    }
+    while ((changeDue > 2.00) || doublesAreApproximatelyEqual(changeDue, 2.00)) {
+        twos++;
+        changeDue = changeDue - 2.00;
+    }
+    while ((changeDue > 1.00) || doublesAreApproximatelyEqual(changeDue, 1.00)) {
+        ones++;
+        changeDue = changeDue - 1.00;
+    }
+    while ((changeDue > 0.50) || doublesAreApproximatelyEqual(changeDue, 0.50)) {
+        p50++;
+        changeDue = changeDue - 0.50;
+    }
+    while ((changeDue > 0.20) || doublesAreApproximatelyEqual(changeDue, 0.20)) {
+        p20++;
+        changeDue = changeDue - 0.20;
+    }
+    while ((changeDue > 0.10) || doublesAreApproximatelyEqual(changeDue, 0.10)) {
+        p10++;
+        changeDue = changeDue - 0.10;
+    }
+    while ((changeDue > 0.05) || doublesAreApproximatelyEqual(changeDue, 0.05)) {
+        p5++;
+        changeDue = changeDue - 0.05;
+    }
+    while ((changeDue > 0.02) || doublesAreApproximatelyEqual(changeDue, 0.02)) {
+        p2++;
+        changeDue = changeDue - 0.02;
+    }
+    while ((changeDue > 0.01) || doublesAreApproximatelyEqual(changeDue, 0.01)) {
+        p1++;
+        changeDue = changeDue - 0.01;
+    }
 
+    println("Your change due is: ");
+    if (fifties > 0) {
+        println(fifties + "x £50 notes");
+    }
+    if (twenties > 0) {
+        println(twenties + "x £20 notes");
+    }
+    if (tenners > 0) {
+        println(tenners + "x £10 notes");
+    }
+    if (fivers > 0) {
+        println(fivers + "x £5 notes");
+    }
+    if (twos > 0) {
+        println(twos + "x £2 coins");
+    }
+    if (ones > 0) {
+        println(ones + "x £1 coins");
+    }
+    if (p50 > 0) {
+        println(p50 + "x 50p coins");
+    }
+    if (p20 > 0) {
+        println(p20 + "x 20p coins");
+    }
+    if (p10 > 0) {
+        println(p10 + "x 10p coins");
+    }
+    if (p5 > 0) {
+        println(p5 + "x 5p coins");
+    }
+    if (p2 > 0) {
+        println(p2 + "x 2p coins");
+    }
+    if (p1 > 0) {
+        println(p1 + "x 1p coins");
+    }
 }
 
 boolean doublesAreApproximatelyEqual(double a, double b) {
-    return (Math.abs(a - b) < 10E-7)
+    return (Math.abs(a - b) < 10E-7);
 }
 
 boolean doubleIsLessThanDouble(double a, double b) {
-    return a < b;
+    return (a < b);
 }
