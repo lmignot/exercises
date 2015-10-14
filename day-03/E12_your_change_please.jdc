@@ -1,5 +1,12 @@
 // 12 Your change please
 //
+// Given an item's cost and a value paid
+// this program will calculate the expected denominations and amounts of change
+//
+// Scenarios:
+//    user has paid same as cost > no change due
+//    user has paid less than cost > need more money
+//    user has paid more than cost > calculate change
 
 println("Enter the cost of the purchase:");
 double cost = readDouble();
@@ -7,3 +14,22 @@ double cost = readDouble();
 println("Enter the value of the note you paid with:");
 double paid = readDouble();
 
+if (doublesAreApproximatelyEqual(cost, paid)) {
+    println("You provided exact change, no change due.");
+} else if (doubleIsLessThanDouble(paid, cost)) {
+    println("You have not paid enough to cover the cost.");
+} else {
+    
+}
+
+double calcChangeDue(double cost, double paid) {
+
+}
+
+boolean doublesAreApproximatelyEqual(double a, double b) {
+    return (Math.abs(a - b) < 10E-7)
+}
+
+boolean doubleIsLessThanDouble(double a, double b) {
+    return a < b;
+}
