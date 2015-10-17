@@ -15,7 +15,7 @@ int shortLen = letters.length();
 int count = 0;
 
 for (int i = 0; i < len; i++) {
-    if (areLettersAtStringPosition(i, letters, sentence)) {
+    if (compareLettersAtStringPosition(i, letters, sentence)) {
         count++;
     }
 }
@@ -26,12 +26,16 @@ if (count > 0) {
     println("The letters did not appear in the sentence.");
 }
 
-boolean areLettersAtStringPosition(int iteration, String letters, String sentence) {
-    int j = 0;
-    int len = letters.length();
+boolean compareLettersAtStringPosition(int i, String letters, String sentence) {
+    int j = i;
+    int lettersLen = letters.length() + i;
+    int sentenceLen = sentence.length();
     String compare = "";
-    while (j < len) {
-        compare += sentence.charAt(j);
+    while (j < lettersLen) {
+        // prevent index out of bounds on sentence.charAt()
+        if (j < sentenceLen) {
+            compare += sentence.charAt(j);
+        }
         j++;
     }
     // println("compare: " + compare);
