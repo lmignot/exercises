@@ -1,0 +1,36 @@
+// E11 Counting letters redux
+//
+
+println("Please enter some text:");
+String sentence = readLine();
+
+boolean isFinished = false;
+String lettersCounted = "";
+
+while(!isFinished) {
+    println("Which letter would you like to count now?");
+    String str = readLine();
+    char letter = str.charAt(0);
+    int letterCount = 0;
+
+    if (countLetterRepetitionInSentence(letter, lettersCounted) > 0) {
+        println("Repeated character, exiting...");
+        println("So long... and thanks for all the fish");
+        isFinished = true;
+    } else {
+        lettersCounted += letter;
+        letterCount = countLetterRepetitionInSentence(letter, sentence);
+        println("There " + (letterCount > 1 ? "are " : "is ") + letterCount + " in your text.");
+    }
+}
+
+int countLetterRepetitionInSentence(char letter, String sentence) {
+    int len = sentence.length();
+    int count = 0;
+    for (int i = 0; i < len; i++) {
+        if (sentence.charAt(i) == letter) {
+            count++;
+        }
+    }
+    return count;
+}
