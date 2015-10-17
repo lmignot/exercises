@@ -1,0 +1,34 @@
+// E15 Palindrome Redux
+//
+
+println("Enter some text:");
+String str = readLine();
+
+str = stripSpacesAndPunctuation(str).toLowerCase();
+println("cleaned");
+println(str);
+
+println("The text entered is" + (isAPalindrome(str) ? "" : " not") + " a palindrome.");
+
+boolean isAPalindrome(String phrase) {
+    String reverse = "";
+    int len = phrase.length();
+    for (int i = len - 1; i >= 0; i--) {
+        reverse += phrase.charAt(i);
+    }
+
+    return phrase.equals(reverse);
+}
+
+String stripSpacesAndPunctuation(String phrase) {
+    String cleaned = "";
+
+    int len = phrase.length();
+    for (int i = 0; i < len; i++) {
+        if (Character.isLetter(phrase.charAt(i))) {
+            cleaned += phrase.charAt(i);
+        }
+    }
+
+    return cleaned;
+}
