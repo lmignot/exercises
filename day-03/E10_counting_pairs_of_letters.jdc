@@ -1,0 +1,72 @@
+// E10 Pairs of letters
+//
+// Originally thought to jump the loop by length of 'letters'
+// if a match was found, however given letters 'aaa'
+// and a string 'aaaaaaabbaaaaaaaa'
+// the program should find every match of aaa - in this case 11
+
+println("Enter 2-3 letters:");
+String letters = readLine();
+println("Enter a sentence:");
+String sentence = readLine();
+
+int len = sentence.length();
+int shortLen = letters.length();
+int count = 0;
+
+for (int i = 0; i < len; i++) {
+    if (areLettersAtStringPosition(i, letters, sentence)) {
+        count++;
+    }
+}
+
+if (count > 0) {
+    println("The letters " + letters + " appeared " + count + " times in your sentence.");
+} else {
+    println("The letters did not appear in the sentence.");
+}
+
+boolean areLettersAtStringPosition(int iteration, String letters, String sentence) {
+    int j = 0;
+    int len = letters.length();
+    String compare = "";
+    while (j < len) {
+        compare += sentence.charAt(j);
+        j++;
+    }
+    // println("compare: " + compare);
+    return areStringsEqual(letters, compare);
+}
+
+boolean areStringsEqual(String strA, String strB) {
+    // equality comparison because we can't use String.equals()
+    // loop over every character and compare, if equal we
+    // increment equality count until we reach the length of the strings
+    // and return true if equality count equals length of strings
+    int len = strA.length();
+    int len2 = strB.length();
+
+    if (len != len2) {
+        return false;
+    }
+
+    int foundEquals = 0;
+    for (int i = 0; i < len; i++) {
+        if(strA.charAt(i) == strB.charAt(i)) {
+            foundEquals++;
+        }
+    }
+    // println("found: " + foundEquals);
+    // println("len: " + len);
+
+    return (foundEquals == len);
+}
+
+
+
+
+
+
+
+
+
