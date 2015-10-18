@@ -4,9 +4,8 @@
 // todo: while looping over every consecutive number (either up or down)
 //       need to do a loop for that number to check if it is prime
 
-
 println "Enter a number:";
-int input = Integer.parseInt(System.console().readLine()); // 4091
+int input = Integer.parseInt(System.console().readLine());
 int primeUp;
 int primeDown;
 String primeReturn = "";
@@ -17,12 +16,12 @@ boolean isPrime = false;
 boolean shouldLoopDown = (input > 2);
 
 // check for primes gt input
-int inputCopy = input; // 4091
+int inputCopy = input;
 int distanceUp = 0;
 int distanceDown = 0;
 
 while (!isPrime) {
-    inputCopy++; // 4092
+    inputCopy++;
     distanceUp++;
     if (numberIsPrime(inputCopy)) {
         isPrime = true;
