@@ -8,7 +8,7 @@ int input = Integer.parseInt(System.console().readLine());
 int i = 1;
 double calc = 0;
 
-long startTime = System.nanoTime();
+long startTime = System.currentTimeMillis();
 
 while (i < input) {
     calc = calc + ((1 / (2 * i - 1)) - (1 / (2 * i + 1)));
@@ -16,7 +16,7 @@ while (i < input) {
 }
 
 double pi = 4 * calc;
-long endTime = System.nanoTime();
+long endTime = System.currentTimeMillis();
 
-println "calculated " + input + " iterations in ~" + (int) ((endTime - startTime) / 1000000) % 60 + "ms";
+println "calculated " + input + " iterations in ~" + (endTime - startTime) + "ms";
 println pi;
