@@ -6,7 +6,7 @@
 
 
 println "Enter a number:";
-int input = Integer.parseInt(System.console().readLine());
+int input = Integer.parseInt(System.console().readLine()); // 4091
 int primeUp;
 int primeDown;
 String primeReturn = "";
@@ -17,16 +17,16 @@ boolean isPrime = false;
 boolean shouldLoopDown = (input > 2);
 
 // check for primes gt input
-int i = input;
+int inputCopy = input; // 4091
 int distanceUp = 0;
 int distanceDown = 0;
 
 while (!isPrime) {
-    i++;
+    inputCopy++; // 4092
     distanceUp++;
-    if (input % i != 0) {
+    if (numberIsPrime(inputCopy)) {
         isPrime = true;
-        primeUp = i;
+        primeUp = inputCopy;
         break;
     }
 }
@@ -35,14 +35,14 @@ while (!isPrime) {
 if (shouldLoopDown) {
 
     isPrime = false;
-    i = input;
+    inputCopy = input;
 
-    while (!isPrime && i >= 2) {
-        i--;
+    while (!isPrime) {
+        inputCopy--;
         distanceDown++;
-        if (input % i != 0) {
+        if (numberIsPrime(inputCopy)) {
             isPrime = true;
-            primeDown = i;
+            primeDown = inputCopy;
             break;
         }
     }
@@ -61,3 +61,26 @@ if (!shouldLoopDown) {
 }
 
 println "The closest prime number(s) to your number is(are): " + primeReturn;
+
+boolean numberIsPrime(int num) {
+    if (num <= 1) {
+        return false;
+    }
+    if (num == 2) {
+        return true;
+    }
+
+    boolean isPrime = false;
+    int i = num;
+    while (i > 2) {
+        i--;
+        if (num % i == 0) {
+            isPrime = false;
+            break;
+        } else {
+            isPrime = true;
+        }
+    }
+
+    return isPrime;
+}
