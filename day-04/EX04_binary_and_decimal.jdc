@@ -4,12 +4,18 @@
 println("What would you like to do today?");
 println("1. Convert binary to decimal");
 println("2. Convert decimal to binary");
-int choice = readInt();
+int choice = Integer.parseInt(readLine());
 
 switch(choice) {
-    case 1: binary2decimal(getBinary());
+    case 1:
+        println("Enter the binary number:");
+        String binaryEntry = readLine();
+        binary2decimal(binaryEntry);
         break;
-    case 2: decimal2binary(getDecimal());
+    case 2:
+        println("Enter the decimal number:");
+        int decimalEntry = Integer.parseInt(readLine());
+        decimal2binary(decimalEntry);
         break;
     default: println("Invalid selection, exiting...");
 }
@@ -26,18 +32,6 @@ int power2(int num) {
     return power(2, num);
 }
 
-String getBinary() {
-    println("Enter the binary number:");
-    String entry = readLine();
-    return entry;
-}
-
-int getDecimal() {
-    println("Enter the decimal number:");
-    int entry = readInt();
-    return entry;
-}
-
 void binary2decimal(String entry) {
     int len = entry.length();
     int converted = 0;
@@ -48,8 +42,8 @@ void binary2decimal(String entry) {
         if(entry.charAt(i) == '1') {
             // power for string length 6 at index 0
             // 6 - 1 - 0 = 5
-             exponent = (len - 1 - i);
-             converted += power2(exponent);
+            exponent = (len - 1 - i);
+            converted += power2(exponent);
         }
     }
 
