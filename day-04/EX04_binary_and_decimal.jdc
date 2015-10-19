@@ -33,7 +33,7 @@ int power(int base, int exponent) {
 }
 
 int power2(int num) {
-    return power(num, 2);
+    int power(2, num);
 }
 
 int binary2decimal(String bin) {
