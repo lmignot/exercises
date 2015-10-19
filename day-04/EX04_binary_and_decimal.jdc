@@ -1,0 +1,41 @@
+// 04 Binary and decimal
+//
+
+int power(int base, int exponent) {
+
+}
+
+int power2(int num) {
+
+}
+
+int binary2decimal(String bin) {
+
+}
+
+String decimal2binary(int dec) {
+
+}
+
+println("What would you like to do today?");
+println("1. Convert binary to decimal");
+println("2. Convert decimal to binary");
+int choice = readInt();
+
+switch(choice) {
+    case 1:
+        println("Enter the binary number:");
+        String str = readLine();
+        int decimaled = binary2decimal(str);
+        println(str + " converted to decimal is: " + decimaled);
+        break;
+    case 2:
+        println("Enter the decimal number:");
+        int num = readInt();
+        String binaried = decimal2binary(num);
+        println(num + " converted to binary is: " + binaried);
+        break;
+    default:
+        println("Invalid selection, exiting...");
+        break;
+}
