@@ -16,3 +16,4 @@ hs_err_pid*
 
 # java files from javadecaf exercises
 day-03/*.java
+day-04/*.java
