@@ -7,21 +7,11 @@ println("2. Convert decimal to binary");
 int choice = readInt();
 
 switch(choice) {
-    case 1:
-        println("Enter the binary number:");
-        String str = readLine();
-        int decimaled = binary2decimal(str);
-        println(str + " converted to decimal is: " + decimaled);
+    case 1: binary2decimal(getBinary());
         break;
-    case 2:
-        println("Enter the decimal number:");
-        int num = readInt();
-        String binaried = decimal2binary(num);
-        println(num + " converted to binary is: " + binaried);
+    case 2: decimal2binary(getDecimal());
         break;
-    default:
-        println("Invalid selection, exiting...");
-        break;
+    default: println("Invalid selection, exiting...");
 }
 
 int power(int base, int exponent) {
@@ -33,13 +23,41 @@ int power(int base, int exponent) {
 }
 
 int power2(int num) {
-    int power(2, num);
+    return power(2, num);
 }
 
-int binary2decimal(String bin) {
-    return Integer.parseInt(bin);
+String getBinary() {
+    println("Enter the binary number:");
+    String entry = readLine();
+    return entry;
 }
 
-String decimal2binary(int dec) {
-    return "" + dec;
+int getDecimal() {
+    println("Enter the decimal number:");
+    int entry = readInt();
+    return entry;
+}
+
+void binary2decimal(String entry) {
+    int len = entry.length();
+    int converted = 0;
+    int exponent;
+
+    for (int i = 0; i < len; i++) {
+        // only calculate if binary is 1 at this position
+        if(entry.charAt(i) == '1') {
+            // power for string length 6 at index 0
+            // 6 - 1 - 0 = 5
+             exponent = (len - 1 - i);
+             converted += power2(exponent);
+        }
+    }
+
+    println(entry + " converted to decimal is: " + converted);
+}
+
+void decimal2binary(int num) {
+    String converted = "";
+
+    println(num + " converted to binary is: " + converted);
 }
