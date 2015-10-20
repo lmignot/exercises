@@ -1,4 +1,4 @@
-// 01 Scope
+// E01 Scope
 //
 // i is visible within the 1st and 2nd for loops
 // j is visible within the 2nd for loop
