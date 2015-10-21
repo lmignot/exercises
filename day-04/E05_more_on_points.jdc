@@ -1,4 +1,35 @@
 // E05 More on points
 //
 
+class Point {
+    double x;
+    double y;
 
+    double distanceTo(Point point) {
+
+    }
+
+    double distanceToOrigin() {
+
+    }
+
+    void moveTo(Point point) {
+        this.x = point.x;
+        this.y = point.y;
+    }
+
+    Point clone() {
+        Point point = new Point();
+        point.x = this.x;
+        point.y = this.y;
+        return point;
+    }
+
+    Point opposite() {
+        Point point = new Point();
+        point.x = (this.x * -1);
+        point.y = (this.y * -1);
+        return point;
+    }
+
+}
