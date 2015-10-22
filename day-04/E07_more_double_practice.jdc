@@ -1,0 +1,35 @@
+// E07 A bit more practice with doubles
+//
+
+println("Enter the mortgage cost: ");
+double cost = Double.parseDouble(readLine());
+println("Enter the length of the mortgage term in years (eg 25): ");
+int years = Integer.parseInt(readLine());
+println("Finally, enter the rate of interest (eg 4.5): ");
+double interestRate = Double.parseDouble(readLine());
+
+int totalCost = (int) Math.ceil(calculateTotalCost(cost, interestRate));
+int annualCost = (int) Math.ceil(calculateAnnualCost(totalCost, years));
+int yearsUntilPaid = (int) Math.ceil(calculateYearsUntilInterestPaid(cost, totalCost, annualCost));
+
+println("The total amount to pay is: " + totalCost);
+println("The annual payments will total: " + annualCost);
+println("Assuming all interest is paid off first, the interest will be paid within " + yearsUntilPaid + " year(s)");
+
+double calculateTotalCost(double cost, double rate) {
+    return cost * (1.0 + rate / 100);
+}
+
+double calculateAnnualCost(double cost, int years) {
+    return cost / (years * 1.0);
+}
+
+double calculateTotalInterest(double cost, double totalCost) {
+    return totalCost - cost;
+}
+
+double calculateYearsUntilInterestPaid(double cost, double totalCost, double annualCost) {
+    double totalInterest = calculateTotalInterest(cost, totalCost);
+    double years = annualCost / totalInterest;
+    return years;
+}
