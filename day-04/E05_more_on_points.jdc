@@ -35,7 +35,7 @@ class Point {
         this.y = y;
     }
 
-    Point clone() {
+    Point makeClone() {
         Point point = new Point();
         point.x = this.x;
         point.y = this.y;
