@@ -1,0 +1,11 @@
+// E01b Recursive line by line - buggyMethod
+//
+
+println(buggyMethod(6));
+
+String buggyMethod(int n) {
+    if (n <= 0) {
+        return "";
+    }
+    return n + " " + buggyMethod(n - 2);
+}
