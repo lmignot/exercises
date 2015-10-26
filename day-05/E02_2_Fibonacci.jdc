@@ -1,10 +1,39 @@
 // E02.2 Fibonacci
 //
 
-
+println("fibonacci recursive, 1st place is: " + fibRec(1));
+println("fibonacci recursive, 2nd place is: " + fibRec(2));
+println("fibonacci recursive, 3rd place is: " + fibRec(3));
+println("fibonacci recursive, 4th place is: " + fibRec(4));
+println("fibonacci recursive, 5th place is: " + fibRec(5));
+println("fibonacci recursive, 6th place is: " + fibRec(6));
+println("fibonacci recursive, 7th place is: " + fibRec(7));
+println("fibonacci recursive, 8th place is: " + fibRec(8));
+println("");
+println("fibonacci iterative, 1st place is: " + fibIter(1));
+println("fibonacci iterative, 2nd place is: " + fibIter(2));
+println("fibonacci iterative, 3rd place is: " + fibIter(3));
+println("fibonacci iterative, 4th place is: " + fibIter(4));
+println("fibonacci iterative, 5th place is: " + fibIter(5));
+println("fibonacci iterative, 6th place is: " + fibIter(6));
+println("fibonacci iterative, 7th place is: " + fibIter(7));
+println("fibonacci iterative, 8th place is: " + fibIter(8));
 
 int fibIter (int n) {
+    if (n <= 1) {
+        return n;
+    }
 
+    int fib = 1;
+    int prev = 1;
+
+    for (int i = 2; i < n; i++) {
+        int tmp = fib;
+        fib += prev;
+        prev = tmp;
+    }
+
+    return fib;
 }
 
 int fibRec (int n) {
