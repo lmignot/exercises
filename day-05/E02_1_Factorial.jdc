@@ -1,0 +1,26 @@
+// E02.1 Factorial
+//
+
+println("Recursive factorial of 4 equals: " + factorialRecursive(4));
+println("Iterative factorial of 4 equals: " + factorialIterative(4));
+println("Recursive factorial of 8 equals: " + factorialRecursive(8));
+println("Iterative factorial of 8 equals: " + factorialIterative(8));
+
+int factorialIterative (int n) {
+    int result = n;
+    n--;
+    while (n >= 1) {
+        result = result * n;
+        n--;
+    }
+    return result;
+}
+
+
+int factorialRecursive (int n) {
+    if (n == 1) {
+        return 1;
+    } else {
+        return n * factorialRecursive(n - 1);
+    }
+}
