@@ -1,0 +1,24 @@
+// E02.3 Hanoi Towers
+//
+
+println("Enter how many discs in your tower (1 or more): ");
+int discs = Integer.parseInt(readLine());
+
+int moves = getMoves(discs);
+
+if (moves > 0) {
+    println("It took " + moves + " days to solve.");
+} else {
+    println("You didn't provide any discs");
+}
+
+int getMoves(int discs) {
+    if (discs == 0) {
+        return 0;
+    } else if (discs == 1) {
+        return 1;
+    } else {
+        int moves = 1 + (2 * getMoves(discs - 1));
+        return moves;
+    }
+}
