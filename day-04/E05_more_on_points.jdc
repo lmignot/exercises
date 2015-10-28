@@ -1,6 +1,43 @@
 // E05 More on points
 //
 
+println("point1 with x = 2.0, y = -2.0");
+Point point1 = new Point();
+point1.x = 2.0;
+point1.y = -2.0;
+println("point1 x: " + point1.x + ", y: " + point1.y);
+
+println("point2 with x = 4.0, y = 8.0");
+Point point2 = new Point();
+point2.x = 4.0;
+point2.y = 8.0;
+println("point2 x: " + point2.x + ", y: " + point2.y);
+
+println("point3 opposite of point 1");
+Point point3 = point1.opposite();
+println("point3 x: " + point3.x + " y: " + point3.y);
+
+println("distance between point1 and point2: " + point1.distanceTo(point2));
+
+println("distance between point3 and origin: " + point3.distanceToOrigin());
+
+println("clone point2 as point2Clone");
+Point point2Clone = point2.makeClone();
+
+println("point2.x == point2Clone.x: " + (point2.x == point2Clone.x));
+println("point2.y == point2Clone.y: " + (point2.y == point2Clone.y));
+
+println("distance between point2 and point2Clone: " + point2Clone.distanceTo(point2));
+
+println("move point1 to x = 3.0, y = 4.0");
+point1.moveTo(3.0, 4.0);
+println("point1 x: " + point1.x + ", y: " + point1.y);
+
+println("move point1 to point2");
+point1.moveTo(point2);
+println("point1.x == point2.x: " + (point1.x == point2.x));
+println("point1.y == point2.y: " + (point1.y == point2.y));
+
 class Point {
     double x;
     double y;
@@ -35,7 +72,7 @@ class Point {
         this.y = y;
     }
 
-    public Point clone() {
+    public Point makeClone() {
         Point point = new Point();
         point.x = this.x;
         point.y = this.y;
