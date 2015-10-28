@@ -1,3 +1,107 @@
 // E04 Binary and hexadecimal
 //
 
+println("Enter a decimal number or hexadecimal (starts with 0x):");
+String str = System.console().readLine();
+
+if(str.substring(0,2).equals("0x")) {
+    int decimal = hexToDecimal(str.substring(2));
+    println(decimal);
+} else {
+    int dec = Integer.parseInt(str);
+    String hex = decimalToHex(dec);
+    println(hex);
+}
+
+int power(int base, int exponent) {
+    int powered = 1;
+    for (int i = 0; i < exponent; i++) {
+        powered = powered * base;
+    }
+    return powered;
+}
+
+int power16(int num) {
+    return power(16, num);
+}
+
+String getHexForValue(int val) {
+    if (val <= 0) {
+        return "0";
+    }
+    String result = "";
+    switch (val) {
+        case 15:
+            result = "f";
+            break;
+        case 14:
+            result = "e";
+            break;
+        case 13:
+            result = "d";
+            break;
+        case 12:
+            result = "c";
+            break;
+        case 11:
+            result = "b";
+            break;
+        case 10:
+            result = "a";
+            break;
+        default:
+            result = "" + val;
+            break;
+    }
+    return result;
+}
+
+String decimalToHex(int dec) {
+    String hex = "";
+
+    for (int i = dec; i > 0; i /= 16) {
+        println(i);
+        int remainder = dec % i;
+        println(remainder);
+        hex += getHexForValue(remainder);
+    }
+    return hex;
+}
+
+int hexToDecimal(String str) {
+    int len = str.length();
+    int dec = 0;
+    int exponent;
+    for (int i = 0; i < len; i++) {
+        int num;
+        char thisChar = str.charAt(i);
+        exponent = (len - 1 - i);
+        switch (thisChar) {
+            case 'a':
+                num = 10;
+                break;
+            case 'b':
+                num = 11;
+                break;
+            case 'c':
+                num = 12;
+                break;
+            case 'd':
+                num = 13;
+                break;
+            case 'e':
+                num = 14;
+                break;
+            case 'f':
+                num = 15;
+                break;
+            default:
+                num = Integer.parseInt("" + thisChar);
+                break;
+        }
+        if (num > 0) {
+            dec += (num * power16(exponent));
+        }
+    }
+    return dec;
+}
