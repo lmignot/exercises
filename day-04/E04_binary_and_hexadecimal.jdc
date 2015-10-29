@@ -60,10 +60,9 @@ String decimalToHex(int dec) {
     String hex = "0x";
     int remainder;
 
+    // loop over decimal dividing by 16 and keep remainders
     for (int i = dec; i > 0; i /= 16) {
-        println(i);
         remainder = i % 16;
-        println(remainder);
         hex += getHexForValue(remainder);
     }
     return hex;
