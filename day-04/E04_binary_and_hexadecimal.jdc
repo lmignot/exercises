@@ -57,11 +57,12 @@ String getHexForValue(int val) {
 }
 
 String decimalToHex(int dec) {
-    String hex = "";
+    String hex = "0x";
+    int remainder;
 
     for (int i = dec; i > 0; i /= 16) {
         println(i);
-        int remainder = dec % i;
+        remainder = i % 16;
         println(remainder);
         hex += getHexForValue(remainder);
     }
