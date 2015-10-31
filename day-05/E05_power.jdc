@@ -1,0 +1,48 @@
+// E05 Power
+//
+
+CalculatePowerIterative calcIter = new CalculatePowerIterative();
+CalculatePowerRecursive calcRec = new CalculatePowerRecursive();
+
+println("2 to the power of 12, iterative: " + calcIter.pow(2, 12));
+println("8 to the power of 4, recursive: " + calcRec.pow(8, 4));
+
+// this triggers a stack overflow error due to not handling negative numbers
+// @TODO: use this for exercise 8
+// logic to solve for negative exponents would need to use doubles: (2^-2 = 1/4 = 0.25)
+
+// println("2 to the power of -12, recursive: " + calcRec.pow(2, -12));
+
+println("4 to the power of 8 iterative == recursive: " + (calcIter.pow(4, 8) == calcRec.pow(4, 8)));
+
+class CalculatePowerIterative {
+
+    int pow (int base, int exponent) {
+        int result = 1;
+
+        for (int i = 0; i < exponent; i++) {
+            result = result * base;
+        }
+
+        return result;
+    }
+}
+
+class CalculatePowerRecursive {
+
+    int pow (int base, int exponent) {
+        // added to avoid errors when attempting to perform this
+        // on negative numbers, didn't have a base case for < 0
+        if (exponent < 0) {
+            return 0;
+        }
+        // any integer to the power 0 returns 1
+        // else call this method with exponent - 1
+        if (exponent == 0) {
+            return 1;
+        } else {
+            return base * pow(base, exponent - 1);
+        }
+
+    }
+}
