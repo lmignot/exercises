@@ -1,0 +1,28 @@
+// E04 Palindrome Recursive
+//
+
+println("Enter some text:");
+String str = readLine();
+
+if (str.length() == 0) {
+    println("You didn't enter any text!");
+} else {
+    println("your text is " + (isPalindrome(str) ? "" : " not ") + "a palindrome");
+}
+
+boolean isPalindrome(String str) {
+    // base case
+    // assume that if length is 1 it is true
+    // and if it's 0 then we've reached the end without returning false
+    if(str.length() == 0 || str.length() == 1) {
+        return true;
+    }
+
+    // if it's a palindrome then the first and last letters should match
+    // and so on, so recurse. else it's false
+    if(str.charAt(0) == str.charAt(str.length() - 1)) {
+        return isPalindrome(str.substring(1, str.length() - 1));
+    } else {
+        return false;
+    }
+}
