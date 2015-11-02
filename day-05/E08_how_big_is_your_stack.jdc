@@ -1,0 +1,71 @@
+// E08 How big is your stack
+//
+
+StackCounter stackCounter = new StackCounter();
+
+println("calling with 2, -1:");
+try  {
+    stackCounter.pow(2, -1);
+} catch (Error e) {
+    println(e);
+    println("size of the stack in method calls is: " + stackCounter.getCalls());
+}
+
+stackCounter.resetCalls();
+
+println("calling with 8, -16:");
+try  {
+    stackCounter.pow(8, -16);
+} catch (Error e) {
+    println(e);
+    println("size of the stack in method calls is: " + stackCounter.getCalls());
+}
+
+stackCounter.resetCalls();
+
+println("calling with 2, -80:");
+try  {
+    stackCounter.pow(2, -80);
+} catch (Error e) {
+    println(e);
+    println("size of the stack in method calls is: " + stackCounter.getCalls());
+}
+
+stackCounter.resetCalls();
+
+println("calling with 34, -120:");
+try  {
+    stackCounter.pow(34, -120);
+} catch (Error e) {
+    println(e);
+    println("size of the stack in method calls is: " + stackCounter.getCalls());
+}
+
+stackCounter.resetCalls();
+
+// using method from E05 to trigger stack overflow
+
+public class StackCounter {
+    private int calls = 0;
+
+    public int getCalls () {
+        return this.calls;
+    }
+
+    public void resetCalls () {
+        this.calls = 0;
+    }
+
+    public int pow (int base, int exponent) {
+        this.calls++;
+        // any integer to the power 0 returns 1
+        // else call this method with exponent - 1
+        if (exponent == 0) {
+            return 1;
+        } else {
+            return base * pow(base, exponent - 1);
+        }
+
+    }
+}
+
