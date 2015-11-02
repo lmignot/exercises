@@ -1,0 +1,36 @@
+// Employee Exercise
+//
+
+Exercise emp = new Exercise();
+
+emp.getEmployees();
+emp.printEmployees();
+
+public class Exercise {
+
+    private int[] employeeIds;
+    private String[] employeeNames;
+    private int numEmployees = 10;
+
+    public Exercise () {
+        employeeIds = new int[numEmployees];
+        employeeNames = new String[numEmployees];
+    }
+
+    public void getEmployees () {
+        for (int i = 0; i < numEmployees; i++) {
+            println("Enter an employee ID:");
+            int id = Integer.parseInt(readLine());
+            println("And their name:");
+            String str = readLine();
+            employeeIds[i] = id;
+            employeeNames[i] = str;
+        }
+    }
+
+    public void printEmployees () {
+        for (int i = 0; i < numEmployees; i++) {
+            println("Employee id: " + employeeIds[i] + ", name: " + employeeNames[i]);
+        }
+    }
+}
