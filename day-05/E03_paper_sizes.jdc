@@ -19,7 +19,7 @@ Paper getPaper(String str) {
 
     // base case is A0
     if (str.equals("0")) {
-        println("is zero");
+        // println("is zero");
         return new Paper(a0w, a0h);
     } else {
         // "0" means we double the width and set it as the length, length is the new width
@@ -33,10 +33,10 @@ Paper getPaper(String str) {
             int size = Integer.parseInt(str);
             // avoid getting smaller than 0
             size = (size > 0) ? size - 1 : size;
-            println(size);
+            // println(size);
             // convert to a string and recurse
             str = size + "";
-            println(str);
+            // println(str);
             return new Paper(getPaper(str).getHeight() / 2, getPaper(str).getWidth());
         }
     }
