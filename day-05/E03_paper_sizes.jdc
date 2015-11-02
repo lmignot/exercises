@@ -48,7 +48,7 @@ public class Paper {
     private int width;
     private int height;
 
-    Paper (int w, int h) {
+    public Paper (int w, int h) {
         this.width = w;
         this.height = h;
     }
