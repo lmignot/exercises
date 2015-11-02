@@ -53,47 +53,39 @@ public class Matrix {
     }
 
     public String toString () {
-        String result = "[";
+        String[] rows = new String[matrix.length];
 
         for (int r = 0; r < matrix.length; r++) {
+            String[] cols = new String[matrix[r].length];
             for (int c = 0; c < matrix[r].length; c++) {
-                result += matrix[r][c];
-                // add column delimiter
-                if (c != matrix[r].length - 1) {
-                    result += ",";
-                }
+                cols[c] =  "" + matrix[r][c];
             }
-            // add row delimiter
-            if (r != matrix.length - 1) {
-                result += ";";
-            }
+            rows[r] = String.join(",", cols);
         }
-        result += "]";
-        return result;
+        return "[" + String.join(";", rows) +"]";
     }
 
     public void prettyPrint () {
-        String cols = "\t";
+        String[] rows = new String[matrix.length + 1];
+
+        // add the column header row
+        String[] header = new String[matrix[0].length + 1];
+        header[0] = "";
         for (int col = 0; col < matrix[0].length; col++) {
-            cols += "Col" + col;
-            if (col != matrix[0].length - 1) {
-                cols += "\t";
-            }
+            header[col + 1] = "Col" + col;
         }
-        System.out.println(cols);
+        rows[0] = String.join("\t", header);
 
         for (int r = 0; r < matrix.length; r++) {
-            String row = "";
+            String[] cols = new String[matrix[r].length + 1];
+            // add the row header
+            cols[0] = "Row" + r;
             for (int c = 0; c < matrix[r].length; c++) {
-                row += matrix[r][c];
-                // store the columns for this row
-                if (c != matrix[r].length - 1) {
-                    row += "\t";
-                }
+                cols[c + 1] = "" + matrix[r][c];
             }
-
-            // print each row
-            System.out.println("Row" + r + "\t" + row);
+            rows[r + 1] = String.join("\t", cols);
         }
+
+        System.out.println(String.join("\n", rows));
     }
 }
