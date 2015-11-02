@@ -12,6 +12,31 @@ public class Matrix {
         }
     }
 
+    public void setMatrix(String matrixValues) {
+        String[] rows = matrixValues.split(";");
+        // loop over rows and columns of our matrix
+        // so we can avoid index out of bounds if our values
+        // are invalid
+        if (rows.length > matrix.length) {
+            System.out.print("Values provided were for " + rows.length + " rows, ");
+            System.out.println("matrix has " + matrix.length + " rows");
+        } else {
+            for (int r = 0; r < matrix.length; r++) {
+                String[] columns = rows[r].split(",");
+                // loop over columns of matrix as above
+                if (columns.length > matrix[r].length) {
+                    System.out.print("Values provided were for " + columns.length + " columns, ");
+                    System.out.println("matrix has " + matrix[0].length + " columns");
+                    break;
+                } else {
+                    for (int c = 0; c < matrix[r].length; c++) {
+                        matrix[r][c] = Integer.parseInt(columns[c]);
+                    }
+                }
+            }
+        }
+    }
+
     public void setElement (int row, int col, int val) {
         // set value only if indices are correct
         if (row < matrix.length && col < matrix[row].length) {
