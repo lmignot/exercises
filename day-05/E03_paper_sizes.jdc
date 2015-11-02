@@ -1,0 +1,67 @@
+// E03 Paper sizes
+//
+
+println("Enter Din-A* paper size (eg A1, A000, etc):");
+String str = readLine();
+
+// basic validation
+while (str.toLowerCase().charAt(0) != 'a') {
+    println("Invalid paper size, please try again:");
+    str = readLine();
+}
+
+Paper p = getPaper(str.substring(1));
+p.printSize();
+
+Paper getPaper(String str) {
+    int a0h = 1189;
+    int a0w = 841;
+
+    // base case is A0
+    if (str.equals("0")) {
+        println("is zero");
+        return new Paper(a0w, a0h);
+    } else {
+        // "0" means we double the width and set it as the length, length is the new width
+        // and proceed recursively until we get to the correct size
+        if (str.charAt(0) == '0') {
+            str = str.substring(1);
+            return new Paper(getPaper(str).getHeight(), getPaper(str).getWidth() * 2);
+        } else {
+        // parse the input as we are getting a size smaller than A0 (A1, A2 etc..)
+        // width is height divided by 2 and length is width
+            int size = Integer.parseInt(str);
+            // avoid getting smaller than 0
+            size = (size > 0) ? size - 1 : size;
+            println(size);
+            // convert to a string and recurse
+            str = size + "";
+            println(str);
+            return new Paper(getPaper(str).getHeight() / 2, getPaper(str).getWidth());
+        }
+    }
+
+
+}
+
+public class Paper {
+    private int width;
+    private int height;
+
+    public Paper (int w, int h) {
+        this.width = w;
+        this.height = h;
+    }
+
+    public int getWidth () {
+        return this.width;
+    }
+
+    public int getHeight () {
+        return this.height;
+    }
+
+    public void printSize () {
+        println("Dimensions for your paper: " + width + "mm x " + height + "mm");
+    }
+}
