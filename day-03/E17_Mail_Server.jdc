@@ -3,43 +3,133 @@
 // Wait for commands
 // If command is incorrect, return to prompt
 
-
+MailServer mailServer = new MailServer();
 
 public class MailServer {
     private String from;
     private String to;
-    private String body;
+    private String body = "";
 
-    private boolean hasFrom = false;
-    private boolean hasTo = false;
-    private boolean hasData = false;
-
-    private boolean isRunning = false;
+    // flag to determine if we should accept commands
+    private boolean isAcceptingCommand = false;
+    // flag to determine if we should accept data
+    private boolean isAcceptingDataInput = false;
 
     public MailServer () {
-        this.isRunning = true;
+        this.isAcceptingCommand = true;
         this.printCommands();
+        this.waitForInput();
     }
 
-    public void printCommands () {
-        println("Welcome to your mail server");
+    private void printCommands () {
+        println("");
+        println("=== Welcome to your mail server ===");
+        println("");
         println("Valid commands are:");
+        println("");
         println("MAIL FROM: <email address>");
         println("RCPT TO: <email address>");
-        println("DATA");
-        println("(end DATA with a line with only a single '.')");
+        println("DATA (end with a line with only a single '.')");
         println("QUIT");
+        println("");
     }
 
-    public void processCommand (String cmd) {
+    private void waitForInput () {
+        while (this.isAcceptingCommand) {
+            String str = readLine();
+            this.processCommand(str);
+        }
 
-        switch(cmd) {
-            case "QUIT":
-                isRunning = false;
-                break;
-            case ""
+        while (this.isAcceptingDataInput) {
+            String str = readLine();
+            this.processDataInput(str);
         }
     }
 
-    private
+    private void processCommand (String cmd) {
+        if (cmd.equals("QUIT")) {
+            println("Goodbye...");
+            this.isAcceptingCommand = false;
+        } else if (cmd.indexOf("MAIL FROM:") > -1) {
+            if (this.from != null) {
+                // don't accept FROM if already set
+                println("Invalid command.");
+            } else {
+                String emailFrom = cmd.substring(cmd.indexOf(':') + 1);
+                // validate email address
+                if (isValidEmail(emailFrom)) {
+                    this.from = emailFrom;
+                    println("OK");
+                } else {
+                    println("Invalid email address.");
+                }
+            }
+        } else if (cmd.indexOf("RCPT TO:") > -1) {
+            if (this.from == null || this.to != null) {
+                // don't accept TO if FROM not set yet
+                // or TO already set
+                println("Invalid command.");
+            } else {
+                String emailTo = cmd.substring(cmd.indexOf(':') + 1);
+                // validate email address
+                if (isValidEmail(emailTo)) {
+                    this.to = emailTo;
+                    println("OK");
+                } else {
+                    println("Invalid email address.");
+                }
+            }
+        } else if (cmd.equals("DATA")) {
+            // process data
+            if (this.from == null || this.to == null) {
+                // don't accept TO if FROM not set yet
+                println("Invalid command.");
+            } else {
+                // process input
+                this.isAcceptingCommand = false;
+                this.isAcceptingDataInput = true;
+            }
+        } else {
+            // invalid command
+            println("Invalid command.");
+        }
+    }
+
+    private void processDataInput(String data) {
+        if (data.equals(".")) {
+            this.isAcceptingDataInput = false;
+            this.sendEmail();
+        } else {
+            this.body += data + "\n";
+        }
+    }
+
+    private void sendEmail() {
+        println("Sending email...");
+        println("from: " + this.from);
+        println("to: " + this.to);
+        println(this.body);
+        println("...done!");
+        this.isAcceptingCommand = true;
+        this.reset();
+        this.waitForInput();
+    }
+
+    private void reset() {
+        this.from = null;
+        this.to = null;
+        this.body = "";
+    }
+
+    private boolean isValidEmail (String email) {
+        if (email.indexOf('@') == -1){
+            return false;
+        } else if (email.indexOf('@') == email.length() + 1) {
+            return false;
+        } else if (email.indexOf('@') == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
