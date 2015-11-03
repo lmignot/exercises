@@ -1,3 +1,45 @@
 // E17 Mail Server
 //
+// Wait for commands
+// If command is incorrect, return to prompt
 
+
+
+public class MailServer {
+    private String from;
+    private String to;
+    private String body;
+
+    private boolean hasFrom = false;
+    private boolean hasTo = false;
+    private boolean hasData = false;
+
+    private boolean isRunning = false;
+
+    public MailServer () {
+        this.isRunning = true;
+        this.printCommands();
+    }
+
+    public void printCommands () {
+        println("Welcome to your mail server");
+        println("Valid commands are:");
+        println("MAIL FROM: <email address>");
+        println("RCPT TO: <email address>");
+        println("DATA");
+        println("(end DATA with a line with only a single '.')");
+        println("QUIT");
+    }
+
+    public void processCommand (String cmd) {
+
+        switch(cmd) {
+            case "QUIT":
+                isRunning = false;
+                break;
+            case ""
+        }
+    }
+
+    private
+}
