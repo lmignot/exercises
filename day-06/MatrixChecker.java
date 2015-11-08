@@ -20,8 +20,8 @@ public class MatrixChecker {
         // An matrix is symmetrical if m[i][j] == m[j][i] for any value of i and j.
         for (int row = 0; row < matrix.length; row++) {
             for (int col = 0; col < matrix[row].length; col++) {
-                System.out.println(matrix[row][col]);
-                System.out.println(matrix[col][row]);
+//                System.out.println(matrix[row][col]);
+//                System.out.println(matrix[col][row]);
                 if(matrix[row][col] != matrix[col][row]) {
                     return false;
                 }
@@ -32,6 +32,21 @@ public class MatrixChecker {
     }
 
     public boolean isTriangular (int[][] matrix) {
+        // given the rule from the exercise:
+        // An matrix is triangular if m[i][j] == 0 for any value of i that is greater than j.
+        // Example assumption:
+        // 1245
+        // 0124
+        // 0012
+        // 0001
+        for (int row = 0; row < matrix.length; row++) {
+            for (int col = 0; col < matrix[row].length; col++) {
+                if (row > col && matrix[row][col] != 0) {
+                    return false;
+                }
+            }
+        }
+
         return true;
     }
 

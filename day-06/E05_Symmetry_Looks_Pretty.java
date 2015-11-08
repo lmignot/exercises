@@ -14,5 +14,11 @@ public class E05_Symmetry_Looks_Pretty {
 
         System.out.println("a matrix ({{1,9,8},{9,7,6},{8,6,5}}) is symmetrical: " + matrixChecker.isSymmetrical
                 (matrix));
+
+        int[][] triangular = {{1,2,4,5},{0,1,2,4},{0,0,1,2},{0,0,0,1}};
+
+        System.out.println("a matrix ({{1,2,4,5},{0,1,2,4},{0,0,1,2},{0,0,0,1}}) is triangular: " + matrixChecker
+                .isTriangular
+                (triangular));
     }
 }
