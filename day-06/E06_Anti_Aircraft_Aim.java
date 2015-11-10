@@ -5,6 +5,13 @@ public class E06_Anti_Aircraft_Aim {
         Target tgt = new Target(10);
         tgt.init();
 
+        System.out.println("Welcome to your Anti-Aircraft game");
+
+        while (isPlaying) {
+
+
+
+        }
 
     }
 }
