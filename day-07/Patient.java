@@ -50,4 +50,13 @@ public class Patient {
             this.nextPatient.prettyPrintAll();
         }
     }
+
+    public int size () {
+        // base case, there's only one
+        if (this.nextPatient == null) {
+            return 1;
+        } else {
+            return 1 + this.nextPatient.size();
+        }
+    }
 }

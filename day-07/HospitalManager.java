@@ -53,6 +53,8 @@ public class HospitalManager {
         }
 
         hm.firstPatientInList.prettyPrintAll();
+        System.out.println("Number of patients is: " + hm.firstPatientInList.size());
+
     }
 }
 
