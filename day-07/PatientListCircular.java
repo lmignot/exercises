@@ -10,11 +10,11 @@ public class PatientListCircular {
         // if we have no patient to start,
         // this patient is our starting point
         if (start == null) {
-            start = new Patient3(patient.getId(), patient.getName(), patient.getAge(), patient.getIllness());
+            start = patient;
             start.setNextPatient(start);
         } else {
 
-            Patient3 tmp = new Patient3(patient.getId(), patient.getName(), patient.getAge(), patient.getIllness());
+            Patient3 tmp = patient;
             Patient3 current = start;
 
             if (start.getId() == start.getNextPatient().getId()) {
@@ -62,6 +62,7 @@ public class PatientListCircular {
             this.size--;
             didDelete = true;
         } else {
+            boolean shouldDelete = false;
             Patient3 current = start;
             Patient3 prev = start;
             // loop and get the last one
@@ -69,12 +70,15 @@ public class PatientListCircular {
                 prev = current;
                 current = current.getNextPatient();
                 if (current.getId() == id) {
+                    shouldDelete = true;
                     break;
                 }
             }
-            prev.setNextPatient(current.getNextPatient());
-            this.size--;
-            didDelete = true;
+            if (shouldDelete) {
+                prev.setNextPatient(current.getNextPatient());
+                this.size--;
+                didDelete = true;
+            }
         }
 
         return didDelete;

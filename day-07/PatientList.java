@@ -10,10 +10,10 @@ public class PatientList {
         // if we have no patient to start,
         // this patient is our starting point
         if (start == null) {
-            start = new Patient2(patient.getName(), patient.getAge(), patient.getIllness());
+            start = patient;
         } else {
 
-            Patient2 tmp = new Patient2(patient.getName(), patient.getAge(), patient.getIllness());
+            Patient2 tmp = patient;
             Patient2 current = start;
 
             // find the last item in our list
