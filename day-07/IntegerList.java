@@ -20,10 +20,47 @@ public class IntegerList {
             this.start = intNode;
         } else {
             IntegerNode current = this.start;
-            while (current.getNext() != null) {
-                current = current.getNext();
+            IntegerNode previous = this.start;
+
+            // case to handle new number being smaller than existing smallest number
+            if (this.autoSort && current.getValue() >= intNode.getValue()) {
+                this.start = intNode;
+                intNode.setNext(current);
+            } else {
+                while (current.getNext() != null) {
+                    previous = current;
+                    current = current.getNext();
+                    if (this.autoSort) {
+                        // break early if new value is less than existing value
+                        if (current.getValue() >= intNode.getValue()) {
+                            break;
+                        }
+                        // break early if new value is between 2 existing values
+                        if (current.getValue() <= intNode.getValue() &&
+                                current.getNext() != null &&
+                                current.getNext().getValue() >= intNode.getValue()) {
+                            break;
+                        }
+                    }
+                }
+                if (this.autoSort) {
+                    IntegerNode next = current.getNext();
+                    // it's smaller than current, so insert before
+                    if (current.getValue() >= intNode.getValue()) {
+                        previous.setNext(intNode);
+                        intNode.setNext(current);
+                    } else if (current.getNext() == null) {
+                        // we managed to get to the end of the list, insert it at the end
+                        current.setNext(intNode);
+                    } else {
+                        // insert it between current and next
+                        current.setNext(intNode);
+                        intNode.setNext(next);
+                    }
+                } else {
+                    current.setNext(intNode);
+                }
             }
-            current.setNext(intNode);
         }
         this.size++;
     }
