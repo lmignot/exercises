@@ -9,12 +9,6 @@ public class IntegerList {
         this.autoSort = sort;
     }
 
-    // @TODO: implement sorting
-    // not sure if we do it while adding or have another private method
-    // that sorts it after it's been added..
-    // seems like the list would already be sorted
-    // so might as well shove it inbetween the next smallest and larger integers
-    // i wonder about duplicates???
     public void add (IntegerNode intNode) {
         if (this.start == null) {
             this.start = intNode;
