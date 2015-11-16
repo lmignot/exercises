@@ -10,4 +10,16 @@ public class ListUtilities {
         return intList;
     }
 
+    public IntegerList bubbleSort(IntegerList list) {
+        // TODO: implement bubbleSort
+    }
+
+    public IntegerList cocktailSort(IntegerList list) {
+        // TODO: implement bubbleSort
+    }
+
+    public IntegerList quickSort(IntegerList list) {
+        // TODO: implement bubbleSort
+    }
+
 }
