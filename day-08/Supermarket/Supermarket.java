@@ -1,6 +1,6 @@
 public class Supermarket {
 
-    private PointerPersonQueue queue;
+    private PersonQueue queue;
 
     public static void main (String[] args) {
         Supermarket market = new Supermarket();
@@ -37,7 +37,7 @@ public class Supermarket {
     }
 
     public int customerCount () {
-        return this.queue.getSize();
+        return ((PointerPersonQueue)this.queue).getSize();
     }
 
     public void addPerson (Person person) {
@@ -49,7 +49,7 @@ public class Supermarket {
     }
 
     public void prettyPrint () {
-        this.queue.prettyPrint();
+        ((PointerPersonQueue)this.queue).prettyPrint();
     }
 
 }
