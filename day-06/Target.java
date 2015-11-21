@@ -9,41 +9,58 @@ public class Target {
 
     public Target(int size) {
         // create new 3d array
-        airspace = new int[size][size][size];
+        this.airspace = new int[size][size][size];
         // cache the size
-        len = size;
+        this.len = size;
         // cache total coordinates
-        totalCoords = (size * size * size);
-        System.out.println("total size: " + totalCoords);
+        this.totalCoords = (size * size * size);
+        // System.out.println("total size: " + totalCoords);
     }
 
     public void init() {
         int randomCoordinate = (int) Math.abs(totalCoords * Math.random());
         int iterationCount = 0;
 
-        for(int x = 0; x < len; x++) {
-            for (int y = 0; y < len; y++) {
-                for (int z = 0; z < len; z++) {
+        for(int x = 0; x < this.len; x++) {
+            for (int y = 0; y < this.len; y++) {
+                for (int z = 0; z < this.len; z++) {
                     iterationCount++;
 //                    System.out.println(iterationCount);
                     if (iterationCount == randomCoordinate) {
 //                        System.out.println("isRandomCoord");
                         // store the coordinates so we can
                         // respond to fires without having to loop :)
-                        targetX = x;
-                        targetY = y;
-                        targetZ = z;
-                        airspace[x][y][z] = 1;
+                        this.targetX = x;
+                        this.targetY = y;
+                        this.targetZ = z;
+                        this.airspace[x][y][z] = 1;
                     } else {
-                        airspace[x][y][z] = 0;
+                        this.airspace[x][y][z] = 0;
                     }
                 }
             }
         }
     }
 
+
     public Result fire(int x, int y, int z) {
-        // @TODO: implement this
-        return Result.HIT;
+        if (x > this.len || y > this.len || z > this.len) {
+            return Result.OUT_OF_RANGE;
+        } else if (x < this.targetX) {
+            return Result.FAIL_LEFT;
+        } else if (x > this.targetX) {
+            return Result.FAIL_RIGHT;
+        } else if (y > this.targetY) {
+            return Result.FAIL_HIGH;
+        } else if (y < this.targetY) {
+            return Result.FAIL_LOW;
+        } else if (z > this.targetZ) {
+            return Result.FAIL_LONG;
+        } else if (z < this.targetZ) {
+            return Result.FAIL_SHORT;
+        } else if (x == this.targetX && y == this.targetY && z == this.targetZ) {
+            return Result.HIT;
+        }
+        return null;
     }
 }
