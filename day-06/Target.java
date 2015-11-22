@@ -1,50 +1,38 @@
 public class Target {
     private int[][][] airspace;
-    private int len;
+    private int size;
     private int totalCoords;
 
     private int targetX;
     private int targetY;
     private int targetZ;
 
-    public Target(int size) {
+    public Target (int size) {
         // create new 3d array
         this.airspace = new int[size][size][size];
         // cache the size
-        this.len = size;
-        // cache total coordinates
-        this.totalCoords = (size * size * size);
-        // System.out.println("total size: " + totalCoords);
+        this.size = size;
     }
 
-    public void init() {
-        int randomCoordinate = (int) Math.abs(totalCoords * Math.random());
-        int iterationCount = 0;
-
-        for(int x = 0; x < this.len; x++) {
-            for (int y = 0; y < this.len; y++) {
-                for (int z = 0; z < this.len; z++) {
-                    iterationCount++;
-//                    System.out.println(iterationCount);
-                    if (iterationCount == randomCoordinate) {
-//                        System.out.println("isRandomCoord");
-                        // store the coordinates so we can
-                        // respond to fires without having to loop :)
-                        this.targetX = x;
-                        this.targetY = y;
-                        this.targetZ = z;
-                        this.airspace[x][y][z] = 1;
-                    } else {
-                        this.airspace[x][y][z] = 0;
-                    }
+    public void init () {
+        for(int x = 0; x < this.size; x++) {
+            for (int y = 0; y < this.size; y++) {
+                for (int z = 0; z < this.size; z++) {
+                    this.airspace[x][y][z] = 0;
                 }
             }
         }
+
+        this.targetX = (int) Math.abs(this.size * Math.random());
+        this.targetY = (int) Math.abs(this.size * Math.random());
+        this.targetZ = (int) Math.abs(this.size * Math.random());
+
+        airspace[this.targetX][this.targetY][this.targetZ] = 1;
     }
 
 
-    public Result fire(int x, int y, int z) {
-        if (x > this.len || y > this.len || z > this.len) {
+    public Result fire (int x, int y, int z) {
+        if (x < 0 || x >= this.size || y < 0 || y >= this.size || z < 0 || z >= this.size) {
             return Result.OUT_OF_RANGE;
         } else if (x < this.targetX) {
             return Result.FAIL_LEFT;
@@ -58,7 +46,7 @@ public class Target {
             return Result.FAIL_LONG;
         } else if (z < this.targetZ) {
             return Result.FAIL_SHORT;
-        } else if (x == this.targetX && y == this.targetY && z == this.targetZ) {
+        } else if (airspace[x][y][z] == 1) {
             return Result.HIT;
         }
         return null;

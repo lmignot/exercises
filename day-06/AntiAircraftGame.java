@@ -1,9 +1,5 @@
 public class AntiAircraftGame {
 
-    private int X;
-    private int Y;
-    private int Z;
-
     private boolean hasHit;
     private boolean isPlaying;
     private Target tgt;
@@ -33,22 +29,18 @@ public class AntiAircraftGame {
 
     private void playRound () {
         while (!this.hasHit) {
-            this.readCoordinates();
-            this.parseCoordinates();
+            System.out.print("Enter a coordinate X:");
+            int X = Integer.parseInt(System.console().readLine());
+            System.out.print("Enter a coordinate Y:");
+            int Y = Integer.parseInt(System.console().readLine());
+            System.out.print("Enter a coordinate Z:");
+            int Z = Integer.parseInt(System.console().readLine());
+            this.parseCoordinates(X, Y, Z);
         }
     }
 
-    private void readCoordinates () {
-        System.out.print("Enter a coordinate X:");
-        this.X = Integer.parseInt(System.console().readLine());
-        System.out.print("Enter a coordinate Y:");
-        this.Y = Integer.parseInt(System.console().readLine());
-        System.out.print("Enter a coordinate Z:");
-        this.Z = Integer.parseInt(System.console().readLine());
-    }
-
-    private void parseCoordinates () {
-        Result result = tgt.fire(this.X, this.Y, this.Z);
+    private void parseCoordinates (int x, int y, int z) {
+        Result result = tgt.fire(x, y, z);
 
         switch(result) {
             case HIT:
@@ -71,7 +63,7 @@ public class AntiAircraftGame {
                 System.out.println("You missed, target is higher.");
                 break;
             case FAIL_LONG:
-                System.out.println("You missed, target closer.");
+                System.out.println("You missed, target is closer.");
                 break;
             case FAIL_SHORT:
                 System.out.println("You missed, target is farther.");
