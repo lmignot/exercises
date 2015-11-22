@@ -1,10 +1,12 @@
 public class IntegerNode {
     private int value;
     private IntegerNode next;
+    private IntegerNode prev;
 
     public IntegerNode (int val) {
         this.value = val;
         this.next = null;
+        this.prev = null;
     }
 
     public int getValue () {
@@ -17,6 +19,14 @@ public class IntegerNode {
 
     public IntegerNode getNext () {
         return this.next;
+    }
+
+    public void setPrev (IntegerNode intNode) {
+        this.prev = intNode;
+    }
+
+    public IntegerNode getPrev () {
+        return this.prev;
     }
 
     public String toString () {
