@@ -24,20 +24,29 @@ public class Supermarket {
         market.addPerson(new Person("Sean Connery", 103));
         market.addPerson(new Person("James Fitzgerald", 99));
 
+        System.out.println(market.customerCount() + " people added");
+        market.prettyPrint();
+
+        System.out.println("Let's serve some more...");
+
         served = market.servePerson();
         System.out.println("Served person: " + served.getName());
 
         served = market.servePerson();
         System.out.println("Served person: " + served.getName());
+
+        market.prettyPrint();
 
     }
 
     public Supermarket () {
-        this.queue = new PointerPersonQueue();
+        // this.queue = new PointerPersonQueue();
+        this.queue = new ArrayPersonQueue();
     }
 
     public int customerCount () {
-        return ((PointerPersonQueue)this.queue).getSize();
+        // return ((PointerPersonQueue)this.queue).getSize();
+        return ((ArrayPersonQueue)this.queue).getSize();
     }
 
     public void addPerson (Person person) {
@@ -49,7 +58,8 @@ public class Supermarket {
     }
 
     public void prettyPrint () {
-        ((PointerPersonQueue)this.queue).prettyPrint();
+        // ((PointerPersonQueue)this.queue).prettyPrint();
+        ((ArrayPersonQueue)this.queue).prettyPrint();
     }
 
 }
