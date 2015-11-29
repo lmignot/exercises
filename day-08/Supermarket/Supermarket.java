@@ -24,10 +24,12 @@ public class Supermarket {
         market.addPerson(customer6);
 
         System.out.println("Supermarket queue created");
+        System.out.println("");
         System.out.print("Should have size equivalent to number of customers...");
         System.out.println((market.getSize() == 6) ? "Passed" : "Failed");
+        System.out.println("");
         market.prettyPrint();
-
+        System.out.println("");
         System.out.println("Ok, time to start serving...");
         Person served = market.servePerson();
         // System.out.print("Should serve first person in queue...");
@@ -38,18 +40,25 @@ public class Supermarket {
 
         served = market.servePerson();
         System.out.println("Expected to serve " + customer4.getName() + ", served " + served.getName());
+        System.out.println("");
 
         System.out.println("Some more people have arrived...");
         market.addPerson(new Person("Sean Connery", 103));
         market.addPerson(new Person("James Fitzgerald", 99));
 
+        System.out.println("");
         market.prettyPrint();
 
-        for (int i = 0; i < market.getSize(); i++) {
+        System.out.println("Market size: " + market.getSize());
+
+        int queueSize = market.getSize();
+
+        for (int i = 0; i < queueSize; i++) {
             served = market.servePerson();
             System.out.println("Served person: " + served.getName());
         }
 
+        System.out.println("");
         market.prettyPrint();
 
     }

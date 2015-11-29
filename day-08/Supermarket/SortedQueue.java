@@ -21,12 +21,24 @@ public class SortedQueue implements PersonQueue {
                 this.head = person;
                 tmp.setNext(person);
                 this.head.setPrev(tmp);
-            } else {
-                // @TODO: handle sorting if new person is not older than oldest
-                this.tail.setPrev(person);
+            } else if (this.tail.getAge() > person.getAge()) {
                 // we need to shift the entire queue over by one
+                this.tail.setPrev(person);
                 person.setNext(this.tail);
                 this.tail = person;
+            } else {
+                Person current = this.tail;
+                while (current.getNext() != null) {
+                    if (current.getAge() > person.getAge()) {
+                        break;
+                    }
+                    current = current.getNext();
+                }
+                Person prev = current.getPrev();
+                prev.setNext(person);
+                person.setPrev(prev);
+                person.setNext(current);
+                current.setPrev(person);
             }
         }
         this.size++;
@@ -37,8 +49,15 @@ public class SortedQueue implements PersonQueue {
             return null;
         } else {
             Person result = this.head;
-            this.head = result.getPrev();
-            this.head.setNext(null);
+            if (this.head != this.tail) {
+                this.head = result.getPrev();
+                this.head.setNext(null);
+            } else {
+                // head == tail so
+                // we reset them both to null
+                this.head = null;
+                this.tail = null;
+            }
             this.size--;
             return result;
         }
