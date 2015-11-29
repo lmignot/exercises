@@ -1,3 +1,8 @@
+/**
+ * BinaryTree class
+ * Implemented to handle removing nodes from IntegerTreeNode class
+ * allows us to keep track of and possibly replace the root node
+ */
 public class BinaryTree {
     private IntegerTreeNode root;
 
@@ -17,6 +22,12 @@ public class BinaryTree {
         this.root.add(n);
     }
 
+    /**
+     * removes int from the tree
+     * if the int is contained by the current root
+     * swaps the root out with the topmost node in the left-hand side
+     * @param  n the int to remove
+     */
     public boolean remove (int n) {
         boolean result = false;
         if (this.root == null) {
