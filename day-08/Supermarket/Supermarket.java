@@ -5,7 +5,8 @@ public class Supermarket {
     public static void main (String[] args) {
         // PersonQueue queue = new PointerPersonQueue();
         // PersonQueue queue = new ArrayPersonQueue();
-        PersonQueue queue = new SortedQueue();
+        // PersonQueue queue = new SortedQueue();
+        PersonQueue queue = new ClusteredQueue();
 
         Supermarket market = new Supermarket(queue);
 
@@ -15,6 +16,10 @@ public class Supermarket {
         Person customer4 = new Person("David Beckham", 56);
         Person customer5 = new Person("Dan Carter", 45);
         Person customer6 = new Person("James Paige", 87);
+        Person customer7 = new Person("Jimmy Jones", 8);
+        Person customer8 = new Person("Evelyne Holande", 12);
+        Person customer9 = new Person("Nick Cage", 67);
+        Person customer10 = new Person("Tom Hanks Jr", 5);
 
         market.addPerson(customer1);
         market.addPerson(customer2);
@@ -22,11 +27,15 @@ public class Supermarket {
         market.addPerson(customer4);
         market.addPerson(customer5);
         market.addPerson(customer6);
+        market.addPerson(customer7);
+        market.addPerson(customer8);
+        market.addPerson(customer9);
+        market.addPerson(customer10);
 
         System.out.println("Supermarket queue created");
         System.out.println("");
         System.out.print("Should have size equivalent to number of customers...");
-        System.out.println((market.getSize() == 6) ? "Passed" : "Failed");
+        System.out.println((market.getSize() == 10) ? "Passed" : "Failed");
         System.out.println("");
         market.prettyPrint();
         System.out.println("");
@@ -39,12 +48,13 @@ public class Supermarket {
         System.out.println("Served person: " + served.getName());
 
         served = market.servePerson();
-        System.out.println("Expected to serve " + customer4.getName() + ", served " + served.getName());
+        System.out.println("Expected to serve " + customer9.getName() + ", served " + served.getName());
         System.out.println("");
 
         System.out.println("Some more people have arrived...");
         market.addPerson(new Person("Sean Connery", 103));
         market.addPerson(new Person("James Fitzgerald", 99));
+        market.addPerson(new Person("Heidi Spinks", 16));
 
         System.out.println("");
         market.prettyPrint();
@@ -66,13 +76,15 @@ public class Supermarket {
     public int getSize () {
         // return ((PointerPersonQueue)this.queue).getSize();
         // return ((ArrayPersonQueue)this.queue).getSize();
-        return ((SortedQueue)this.queue).getSize();
+        // return ((SortedQueue)this.queue).getSize();
+        return ((ClusteredQueue)this.queue).getSize();
     }
 
     public void prettyPrint () {
         // ((PointerPersonQueue)this.queue).prettyPrint();
         // ((ArrayPersonQueue)this.queue).prettyPrint();
-        ((SortedQueue)this.queue).prettyPrint();
+        // ((SortedQueue)this.queue).prettyPrint();
+        ((ClusteredQueue)this.queue).prettyPrint();
     }
 
     public Supermarket (PersonQueue queue) {

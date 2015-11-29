@@ -71,7 +71,7 @@ public class SortedQueue implements PersonQueue {
         if (this.size == 0) {
             System.out.println("Empty queue...");
         } else {
-            System.out.println(this.getSize() + " people left in the queue.");
+            // System.out.println(this.getSize() + " people left in the queue.");
             Person current = this.tail;
             do {
                 System.out.println("Name: " + current.getName() + ", age: " + current.getAge());
