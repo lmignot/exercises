@@ -6,7 +6,8 @@ public class PhoneLauncher {
     }
 
     public void launch () {
-        SmartPhone myPhone = new SmartPhone();
+        String brand = "iPhone";
+        SmartPhone myPhone = new SmartPhone(brand);
 
         String[] numbers = new String[] {
             "07565432543", "08004567281", "02190456783",
@@ -21,15 +22,15 @@ public class PhoneLauncher {
         }
 
         System.out.println("");
-        System.out.println("Should ring an alarm...");
+        System.out.println("Should ring an alarm... ");
         myPhone.ringAlarm("Wake up for work");
 
         System.out.println("");
-        System.out.println("Should play a game...");
+        System.out.println("Should play a game... ");
         myPhone.playGame("Snakes 4 Reloaded");
 
         System.out.println("");
-        System.out.println("Should store a log of last 10 numbers called...");
+        System.out.println("Should store a log of last 10 numbers called... ");
         myPhone.printCallLog();
 
         System.out.println("");
@@ -37,12 +38,16 @@ public class PhoneLauncher {
         System.out.println(myPhone.getLogSize() <= 10 ? "passed." : "failed.");
 
         System.out.println("");
-        System.out.println("Should browse a web address...");
+        System.out.println("Should browse a web address... ");
         myPhone.browseWeb("http://www.bbk.ac.uk");
 
         System.out.println("");
-        System.out.println("Should return current position as coordinates...");
+        System.out.println("Should return current position as coordinates... ");
         System.out.println(myPhone.findPosition());
+
+        System.out.println("");
+        System.out.print("Should have the correct brand (" + brand + ")... ");
+        System.out.println(myPhone.getBrand().equals(brand) ? "passed." : "failed.");
 
     }
 }

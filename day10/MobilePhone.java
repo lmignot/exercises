@@ -9,7 +9,8 @@ public class MobilePhone extends OldPhone {
     public static final int callLogMemorySize = 10;
     private Queue<String> callLog;
 
-    public MobilePhone () {
+    public MobilePhone (String brand) {
+        super(brand);
         this.callLog = new PriorityQueue<String>();
     }
 

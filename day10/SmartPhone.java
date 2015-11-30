@@ -5,6 +5,10 @@
  */
 public class SmartPhone extends MobilePhone {
 
+    public SmartPhone (String brand) {
+        super(brand);
+    }
+
     /**
      * Browses a web url
      * This implementation simply prints out a line to the screen
