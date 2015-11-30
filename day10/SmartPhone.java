@@ -27,6 +27,15 @@ public class SmartPhone extends MobilePhone {
         return new Coordinates(51.5254607, -0.1292638).toString();
     }
 
+    /**
+     * Launches the specified game
+     * This implementation simply prints out a line to the screen
+     * @param game the game to play
+     */
+    public void playGame (String game) {
+        System.out.println("Launching game: " + game);
+    }
+
     @Override
     public void call (String number) {
         if (number.substring(0,2).equals("00")) {
