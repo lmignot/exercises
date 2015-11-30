@@ -49,5 +49,11 @@ public class PhoneLauncher {
         System.out.print("Should have the correct brand (" + brand + ")... ");
         System.out.println(myPhone.getBrand().equals(brand) ? "passed." : "failed.");
 
+        SmartPhone myKidsPhone = new RestrictedSmartPhone("S6i");
+
+        System.out.println("");
+        System.out.println("Should not play a game on a boring phone...");
+        myKidsPhone.playGame("Boom Beach 10 MegaFunVersion");
+        System.out.println("Failed as we can't assign weaker access privileges...");
     }
 }
