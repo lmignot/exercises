@@ -29,4 +29,20 @@ public class PersonTest {
             assertEquals("getInitials should return the correct initials", initial, Person.getInitials(name));
         }
     }
+
+    @Test
+    public void testsSpacesAroundName () {
+        String name = " Laurent Jonathan Mignot ";
+        String initials = "LJM";
+
+        assertEquals("getInitials should return the correct initials", initials, Person.getInitials(name));
+    }
+
+    @Test
+    public void testsSpacesAroundAndInsideName () {
+        String name = " Laurent Jonathan  Mignot ";
+        String initials = "LJM";
+
+        assertEquals("getInitials should return the correct initials", initials, Person.getInitials(name));
+    }
 }
