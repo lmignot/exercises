@@ -8,13 +8,13 @@ public interface Book {
 
     /**
      * Retrieves the author of this book
-     * @return String the book's author
+     * @return The book's author
      */
     String getAuthor();
 
     /**
      * Retrieves the title of this book
-     * @return String the book's title
+     * @return The book's title
      */
     String getTitle();
 }

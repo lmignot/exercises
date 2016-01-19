@@ -26,4 +26,13 @@ public class LibraryUserImpl implements LibraryUser {
     public int getLibraryId() {
         return this.libraryId;
     }
+
+    /**
+     * @see LibraryUser#register(Library)
+     */
+    @Override
+    public int register(Library library) {
+        this.libraryId = library.getId(this.fullName);
+        return this.libraryId;
+    }
 }
