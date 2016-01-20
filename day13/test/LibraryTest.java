@@ -2,7 +2,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
 
 /**
  * Testing a Library
@@ -27,19 +26,19 @@ public class LibraryTest {
 
     @Test
     public void testConstructLibrary () {
-        assertThat(library.getLibrary().equals(libraryName));
-        assertEquals(library.getMaxBooksPerUser(), 3);
+        assertThat(library.getLibrary()).isEqualTo(libraryName);
+        assertThat(library.getMaxBooksPerUser()).isEqualTo(3);
     }
 
     @Test
     public void testLibraryRegisterUsers () {
-        assertEquals(library.getId(testUserName), testUserId);
-        assertEquals(library.getId("Henry Ford"), 1);
+        assertThat(library.getId(testUserName)).isEqualTo(testUserId);
+        assertThat(library.getId("Henry Ford")).isEqualTo(1);
 
         LibraryUser user = new LibraryUserImpl("Samuel L. Jackson");
         user.register(library);
 
-        assertEquals(library.getId("Samuel L. Jackson"), user.getLibraryId());
+        assertThat(library.getId("Samuel L. Jackson")).isEqualTo(user.getLibraryId());
     }
 
     @Test(expected = IllegalArgumentException.class)
