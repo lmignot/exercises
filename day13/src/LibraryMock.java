@@ -3,19 +3,18 @@
  */
 public class LibraryMock implements Library {
 
-    /**
-     * @see Library#getLibrary()
-     */
     @Override
     public String getLibrary() {
         return "My Library";
     }
 
-    /**
-     * @see Library#getId(String)
-     */
     @Override
     public int getId(String userName) {
         return 99;
+    }
+
+    @Override
+    public int getMaxBooksPerUser() {
+        return 9;
     }
 }

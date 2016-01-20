@@ -1,10 +1,9 @@
-/**
- * Testing a Book
- */
-
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * Testing a Book
+ */
 public class BookTest {
 
     @Test
