@@ -31,6 +31,12 @@ public class LibraryTest {
     }
 
     @Test
+    public void testChangeMaxBooksPerUser () {
+        library.setMaxBooksPerUser(5);
+        assertThat(library.getMaxBooksPerUser()).isEqualTo(5);
+    }
+
+    @Test
     public void testLibraryRegisterUsers () {
         assertThat(library.getId(testUserName)).isEqualTo(testUserId);
         assertThat(library.getId("Henry Ford")).isEqualTo(1);

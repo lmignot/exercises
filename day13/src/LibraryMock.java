@@ -17,4 +17,7 @@ public class LibraryMock implements Library {
     public int getMaxBooksPerUser() {
         return 9;
     }
+
+    @Override
+    public void setMaxBooksPerUser(int newMax) {}
 }

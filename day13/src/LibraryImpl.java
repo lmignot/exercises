@@ -8,11 +8,11 @@ import java.util.List;
 public class LibraryImpl implements Library{
 
     private final String name;
-    private final int MAX_BOOKS_PER_USER = 3;
+    private int maxBooksPerUser = 3;
 
     private List<RegisteredLibraryUserImpl> libraryUsers;
-    private List<Book> availableBooks;
-    private List<Book> booksOnLoan;
+    private List<BookImpl> availableBooks;
+    private List<BookImpl> booksOnLoan;
 
     LibraryImpl(String name) {
         this.name = name;
@@ -63,6 +63,14 @@ public class LibraryImpl implements Library{
      */
     @Override
     public int getMaxBooksPerUser() {
-        return this.MAX_BOOKS_PER_USER;
+        return this.maxBooksPerUser;
+    }
+
+    /**
+     * @see Library#setMaxBooksPerUser(int)
+     */
+    @Override
+    public void setMaxBooksPerUser(int newMax) {
+        this.maxBooksPerUser = newMax;
     }
 }
