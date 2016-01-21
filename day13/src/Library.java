@@ -31,4 +31,27 @@ public interface Library {
      * @param newMax Number representing the new maximum books per user setting
      */
     void setMaxBooksPerUser(int newMax);
+
+    /**
+     * Add a book to the Library
+     * @param title The title of the book
+     * @param author The author of the book
+     * @return True if the book was added, false if the book already exists
+     */
+    boolean addBook(String title, String author);
+
+    /**
+     * Take (borrow) a book from the Library
+     * @param title The title of the book to borrow
+     * @return The borrowed book, or null if the book has been taken or does not exist
+     */
+    Book takeBook(String title);
+
+    /**
+     * Return a borrowed book to the Library
+     * @param book The book to return
+     * @return True if the book is in the Library and was borrowed, False
+     * if the book was not borrowed or if the book does not exist in the Library
+     */
+    boolean returnBook(Book book);
 }

@@ -73,4 +73,28 @@ public class LibraryImpl implements Library{
     public void setMaxBooksPerUser(int newMax) {
         this.maxBooksPerUser = newMax;
     }
+
+    /**
+     * @see Library#addBook(String, String)
+     */
+    @Override
+    public boolean addBook(String title, String author) {
+        return false;
+    }
+
+    /**
+     * @see Library#takeBook(String)
+     */
+    @Override
+    public Book takeBook(String title) {
+        return null;
+    }
+
+    /**
+     * @see Library#returnBook(Book)
+     */
+    @Override
+    public boolean returnBook(Book book) {
+        return false;
+    }
 }
