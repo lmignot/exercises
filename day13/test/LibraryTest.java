@@ -218,10 +218,10 @@ public class LibraryTest {
         library.addBook("Wolf Hall", "Hilary Mantel");
         library.addBook("Fear and Loathing in Las Vegas", "Hunter S. Thompson");
 
-        Book book = library.takeBook("Fear and Loathing in Las Vegas");
-        Book book2 = library.takeBook("Wolf Hall");
-        Book book3 = library.takeBook("Harry Potter and the Deathly Hallows");
-        Book book4 = library.takeBook("Harry Potter and the Deathly Hallows");
+        library.takeBook("Fear and Loathing in Las Vegas");
+        library.takeBook("Wolf Hall");
+        library.takeBook("Harry Potter and the Deathly Hallows");
+        library.takeBook("Harry Potter and the Deathly Hallows");
 
         assertThat(library.getBookCount()).isGreaterThan(0);
         assertThat(library.getBookCount()).isEqualTo(3);
@@ -273,5 +273,66 @@ public class LibraryTest {
         library.returnBook(book2);
 
         assertThat(library.getBookCount()).isEqualTo(0);
+    }
+
+    @Test
+    public void testLibraryBorrowedBookCount () {
+        library.addBook("Harry Potter and the Deathly Hallows", "J.K. Rowling");
+        library.addBook("Wolf Hall", "Hilary Mantel");
+        library.addBook("Fear and Loathing in Las Vegas", "Hunter S. Thompson");
+
+        library.takeBook("Fear and Loathing in Las Vegas");
+        library.takeBook("Wolf Hall");
+
+        assertThat(library.getBookBorrowedCount()).isEqualTo(2);
+        assertThat(library.getBookCount()).isEqualTo(3);
+    }
+
+    @Test
+    public void testLibraryBorrowedBookCountAfterReturning () {
+        library.addBook("Harry Potter and the Deathly Hallows", "J.K. Rowling");
+        library.addBook("Wolf Hall", "Hilary Mantel");
+        library.addBook("Fear and Loathing in Las Vegas", "Hunter S. Thompson");
+
+        Book book = library.takeBook("Wolf Hall");
+        library.returnBook(book);
+
+        assertThat(library.getBookBorrowedCount()).isEqualTo(0);
+
+        Book book2 = library.takeBook("Fear and Loathing in Las Vegas");
+        library.returnBook(book2);
+
+        assertThat(library.getBookBorrowedCount()).isEqualTo(0);
+
+        book = library.takeBook("Wolf Hall");
+        book2 = library.takeBook("Fear and Loathing in Las Vegas");
+
+        library.returnBook(book);
+        library.returnBook(book2);
+
+        assertThat(library.getBookBorrowedCount()).isEqualTo(0);
+    }
+
+    @Test
+    public void testLibraryBorrowedBookCountAfterInvalidReturning () {
+        library.addBook("Harry Potter and the Deathly Hallows", "J.K. Rowling");
+        library.addBook("Wolf Hall", "Hilary Mantel");
+        library.addBook("Fear and Loathing in Las Vegas", "Hunter S. Thompson");
+
+        library.returnBook(null);
+
+        assertThat(library.getBookBorrowedCount()).isEqualTo(0);
+    }
+
+    @Test
+    public void testLibraryBorrowedBookCountAfterInvalidBorrowing () {
+        library.addBook("Harry Potter and the Deathly Hallows", "J.K. Rowling");
+        library.addBook("Wolf Hall", "Hilary Mantel");
+        library.addBook("Fear and Loathing in Las Vegas", "Hunter S. Thompson");
+
+        library.takeBook("");
+        library.takeBook(null);
+
+        assertThat(library.getBookBorrowedCount()).isEqualTo(0);
     }
 }

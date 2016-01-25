@@ -170,16 +170,16 @@ public class LibraryImpl implements Library{
 
     @Override
     public int getReaderCount() {
-        return 0;
+        return this.libraryUsers.size();
     }
 
     @Override
     public int getBookCount() {
-        return 0;
+        return this.availableBooks.size() + this.booksOnLoan.size();
     }
 
     @Override
     public int getBookBorrowedCount() {
-        return 0;
+        return this.booksOnLoan.size();
     }
 }
