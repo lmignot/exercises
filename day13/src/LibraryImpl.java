@@ -10,9 +10,9 @@ public class LibraryImpl implements Library{
     private final String name;
     private int maxBooksPerUser = 3;
 
-    private List<RegisteredLibraryUserImpl> libraryUsers;
-    private List<BookImpl> availableBooks;
-    private List<BookImpl> booksOnLoan;
+    private List<RegisteredLibraryUser> libraryUsers;
+    private List<Book> availableBooks;
+    private List<Book> booksOnLoan;
 
     LibraryImpl(String name) {
         this.name = name;
@@ -42,7 +42,7 @@ public class LibraryImpl implements Library{
         if (this.libraryUsers.isEmpty()) {
             libraryUsers.add(new RegisteredLibraryUserImpl(userName, id));
         } else {
-            for (RegisteredLibraryUserImpl u : libraryUsers) {
+            for (RegisteredLibraryUser u : libraryUsers) {
                 // check if the user is already registered
                 // and return their id
                 if (u.getUserName().equals(userName)) {
@@ -108,8 +108,8 @@ public class LibraryImpl implements Library{
         } else {
             String bTitle = "";
             String bAuthor = "";
-            BookImpl found = null;
-            for (BookImpl b : this.availableBooks) {
+            Book found = null;
+            for (Book b : this.availableBooks) {
                 if (b.getTitle().equals(title)) {
                     bTitle = b.getTitle();
                     bAuthor = b.getAuthor();
@@ -135,8 +135,8 @@ public class LibraryImpl implements Library{
         if (!isOnLoan) {
             return false;
         } else {
-            BookImpl found = null;
-            for (BookImpl b : this.booksOnLoan) {
+            Book found = null;
+            for (Book b : this.booksOnLoan) {
                 if (b.getTitle().equals(book.getTitle())) {
                     found = b;
                     break;
@@ -153,12 +153,12 @@ public class LibraryImpl implements Library{
      * @param title The title of the book to search for
      * @return True if the book already exists, false if not
      */
-    private boolean isBookInList(String title, List<BookImpl> listToSearch) {
+    private boolean isBookInList(String title, List<Book> listToSearch) {
         if (listToSearch.isEmpty()) {
             return false;
         } else {
             boolean isInLibrary = false;
-            for (BookImpl b : listToSearch) {
+            for (Book b : listToSearch) {
                 if (b.getTitle().equals(title)) {
                     isInLibrary = true;
                     break;
