@@ -54,4 +54,22 @@ public interface Library {
      * if the book was not borrowed or if the book does not exist in the Library
      */
     boolean returnBook(Book book);
+
+    /**
+     * Get the number of registered users in the Library
+     * @return The number of registered users
+     */
+    int getReaderCount();
+
+    /**
+     * Get the number of Books in the Library
+     * @return The number of Books
+     */
+    int getBookCount();
+
+    /**
+     * Get the number of Books that have been borrowed from the Library
+     * @return The number of Borrowed Books
+     */
+    int getBookBorrowedCount();
 }

@@ -79,6 +79,9 @@ public class LibraryImpl implements Library{
      */
     @Override
     public boolean addBook(String title, String author) {
+        if (title == null || author == null || title.equals("") || author.equals("")) {
+            return false;
+        }
         boolean didAddBook = false;
         boolean isAvailable = this.isBookInList(title, this.availableBooks);
         boolean isOnLoan = this.isBookInList(title, this.booksOnLoan);
@@ -93,6 +96,9 @@ public class LibraryImpl implements Library{
      */
     @Override
     public Book takeBook(String title) {
+        if (title == null || title.equals("")) {
+            return null;
+        }
         boolean isAvailable = this.isBookInList(title, this.availableBooks);
         boolean isOnLoan = this.isBookInList(title, this.booksOnLoan);
         if(!isAvailable && !isOnLoan) {
@@ -122,6 +128,9 @@ public class LibraryImpl implements Library{
      */
     @Override
     public boolean returnBook(Book book) {
+        if (book == null) {
+            return false;
+        }
         boolean isOnLoan = this.isBookInList(book.getTitle(), this.booksOnLoan);
         if (!isOnLoan) {
             return false;
@@ -157,5 +166,20 @@ public class LibraryImpl implements Library{
             }
             return isInLibrary;
         }
+    }
+
+    @Override
+    public int getReaderCount() {
+        return 0;
+    }
+
+    @Override
+    public int getBookCount() {
+        return 0;
+    }
+
+    @Override
+    public int getBookBorrowedCount() {
+        return 0;
     }
 }

@@ -72,6 +72,18 @@ public class LibraryTest {
     }
 
     @Test
+    public void testAddInvalidBookToLibrary () {
+        assertThat(library.addBook("Harry Potter and the Deathly Hallows", null)).isFalse();
+        assertThat(library.addBook(null, "J.K. Rowling")).isFalse();
+        assertThat(library.addBook(null, null)).isFalse();
+        assertThat(library.addBook("", "")).isFalse();
+        assertThat(library.addBook(null, "")).isFalse();
+        assertThat(library.addBook("", null)).isFalse();
+        assertThat(library.addBook("", "J.K. Rowling")).isFalse();
+        assertThat(library.addBook("Harry Potter and the Deathly Hallows", "")).isFalse();
+    }
+
+    @Test
     public void testBorrowBookFromLibrary () {
         Book book = new BookImpl("Harry Potter and the Deathly Hallows", "J.K. Rowling");
         library.addBook("Harry Potter and the Deathly Hallows", "J.K. Rowling");
@@ -82,6 +94,11 @@ public class LibraryTest {
     }
 
     @Test
+    public void testBorrowInvalidBookFromLibrary () {
+        assertThat(library.takeBook(null)).isNull();
+    }
+
+    @Test
     public void testReturnBorrowedBookToLibrary () {
         library.addBook("Wolf Hall", "Hilary Mantel");
         Book borrowed = library.takeBook("Wolf Hall");
@@ -89,6 +106,12 @@ public class LibraryTest {
         boolean returned = library.returnBook(borrowed);
 
         assertThat(returned).isTrue();
+    }
+
+    @Test
+    public void testReturnInvalidBorrowedBookToLibrary () {
+        assertThat(library.takeBook(null)).isNull();
+        assertThat(library.takeBook("")).isNull();
     }
 
     @Test
@@ -123,5 +146,132 @@ public class LibraryTest {
         boolean returned = library.returnBook(toReturn);
 
         assertThat(returned).isFalse();
+    }
+
+    @Test
+    public void testLibraryUserCount () {
+        library.getId(testUserName);
+        library.getId("Henry Ford");
+        library.getId("Samuel L. Jackson");
+        library.getId("Thomas Edison");
+        library.getId("Albert Einstein");
+        library.getId("Robert DeNiro");
+        library.getId("Leonardo Davinci");
+        library.getId("John Smith");
+        library.getId("Janet Doe");
+
+        assertThat(library.getReaderCount()).isGreaterThan(0);
+        assertThat(library.getReaderCount()).isEqualTo(9);
+    }
+
+    @Test
+    public void testLibraryBookCount () {
+        assertThat(library.getBookCount()).isEqualTo(0);
+
+        library.addBook("Harry Potter and the Deathly Hallows", "J.K. Rowling");
+        library.addBook("Wolf Hall", "Hilary Mantel");
+        library.addBook("Fear and Loathing in Las Vegas", "Hunter S. Thompson");
+
+        assertThat(library.getBookCount()).isGreaterThan(0);
+        assertThat(library.getBookCount()).isEqualTo(3);
+    }
+
+    @Test
+    public void testLibraryBookCountAfterInvalidAdding () {
+        assertThat(library.getBookCount()).isEqualTo(0);
+
+        library.addBook(null, "J.K. Rowling");
+        library.addBook("Wolf Hall", null);
+        library.addBook(null, null);
+        library.addBook("", null);
+        library.addBook(null, "");
+        library.addBook("", "");
+
+        assertThat(library.getBookCount()).isEqualTo(0);
+    }
+
+    @Test
+    public void testLibraryBookCountEmptyLibrary () {
+        assertThat(library.getBookCount()).isEqualTo(0);
+    }
+
+    @Test
+    public void testLibraryBookCountAfterBorrowing () {
+        assertThat(library.getBookCount()).isEqualTo(0);
+
+        library.addBook("Harry Potter and the Deathly Hallows", "J.K. Rowling");
+        library.addBook("Wolf Hall", "Hilary Mantel");
+        library.addBook("Fear and Loathing in Las Vegas", "Hunter S. Thompson");
+
+        assertThat(library.getBookCount()).isGreaterThan(0);
+        assertThat(library.getBookCount()).isEqualTo(3);
+
+        library.takeBook("Fear and Loathing in Las Vegas");
+
+        assertThat(library.getBookCount()).isGreaterThan(0);
+        assertThat(library.getBookCount()).isEqualTo(3);
+    }
+
+    @Test
+    public void testLibraryBookCountAfterBorrowingAlreadyTakenBook () {
+        library.addBook("Harry Potter and the Deathly Hallows", "J.K. Rowling");
+        library.addBook("Wolf Hall", "Hilary Mantel");
+        library.addBook("Fear and Loathing in Las Vegas", "Hunter S. Thompson");
+
+        Book book = library.takeBook("Fear and Loathing in Las Vegas");
+        Book book2 = library.takeBook("Wolf Hall");
+        Book book3 = library.takeBook("Harry Potter and the Deathly Hallows");
+        Book book4 = library.takeBook("Harry Potter and the Deathly Hallows");
+
+        assertThat(library.getBookCount()).isGreaterThan(0);
+        assertThat(library.getBookCount()).isEqualTo(3);
+    }
+
+    @Test
+    public void testLibraryBookCountAfterInvalidBorrowing () {
+        assertThat(library.getBookCount()).isEqualTo(0);
+
+        library.addBook("Harry Potter and the Deathly Hallows", "J.K. Rowling");
+        library.addBook("Wolf Hall", "Hilary Mantel");
+        library.addBook("Fear and Loathing in Las Vegas", "Hunter S. Thompson");
+
+        assertThat(library.getBookCount()).isGreaterThan(0);
+        assertThat(library.getBookCount()).isEqualTo(3);
+
+        library.takeBook(null);
+        library.takeBook("");
+        library.takeBook("John Doe's History");
+
+        assertThat(library.getBookCount()).isGreaterThan(0);
+        assertThat(library.getBookCount()).isEqualTo(3);
+    }
+
+    @Test
+    public void testLibraryBookCountAfterReturning () {
+        library.addBook("Harry Potter and the Deathly Hallows", "J.K. Rowling");
+        library.addBook("Wolf Hall", "Hilary Mantel");
+        library.addBook("Fear and Loathing in Las Vegas", "Hunter S. Thompson");
+
+        Book book = library.takeBook("Fear and Loathing in Las Vegas");
+        Book book2 = library.takeBook("Wolf Hall");
+        Book book3 = library.takeBook("Harry Potter and the Deathly Hallows");
+
+        library.returnBook(book);
+        library.returnBook(book2);
+        library.returnBook(book3);
+
+        assertThat(library.getBookCount()).isGreaterThan(0);
+        assertThat(library.getBookCount()).isEqualTo(3);
+    }
+
+    @Test
+    public void testLibraryBookCountAfterInvalidReturning () {
+        Book book = library.takeBook("");
+        Book book2 = library.takeBook(null);
+
+        library.returnBook(book);
+        library.returnBook(book2);
+
+        assertThat(library.getBookCount()).isEqualTo(0);
     }
 }
