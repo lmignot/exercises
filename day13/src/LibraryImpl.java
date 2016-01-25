@@ -168,16 +168,25 @@ public class LibraryImpl implements Library{
         }
     }
 
+    /**
+     * @see Library#getReaderCount()
+     */
     @Override
     public int getReaderCount() {
         return this.libraryUsers.size();
     }
 
+    /**
+     * @see Library#getBookCount()
+     */
     @Override
     public int getBookCount() {
         return this.availableBooks.size() + this.booksOnLoan.size();
     }
 
+    /**
+     * @see Library#getBookBorrowedCount()
+     */
     @Override
     public int getBookBorrowedCount() {
         return this.booksOnLoan.size();
