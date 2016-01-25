@@ -79,7 +79,13 @@ public class LibraryImpl implements Library{
      */
     @Override
     public boolean addBook(String title, String author) {
-        return false;
+        boolean didAddBook = false;
+        boolean isAvailable = this.isBookInList(title, this.availableBooks);
+        boolean isOnLoan = this.isBookInList(title, this.booksOnLoan);
+        if (!isAvailable && !isOnLoan) {
+            didAddBook = this.availableBooks.add(new BookImpl(title, author));
+        }
+        return didAddBook;
     }
 
     /**
@@ -87,7 +93,28 @@ public class LibraryImpl implements Library{
      */
     @Override
     public Book takeBook(String title) {
-        return null;
+        boolean isAvailable = this.isBookInList(title, this.availableBooks);
+        boolean isOnLoan = this.isBookInList(title, this.booksOnLoan);
+        if(!isAvailable && !isOnLoan) {
+            return null;
+        } else if (isOnLoan) {
+            return null;
+        } else {
+            String bTitle = "";
+            String bAuthor = "";
+            BookImpl found = null;
+            for (BookImpl b : this.availableBooks) {
+                if (b.getTitle().equals(title)) {
+                    bTitle = b.getTitle();
+                    bAuthor = b.getAuthor();
+                    found = b;
+                    break;
+                }
+            }
+            this.availableBooks.remove(found);
+            this.booksOnLoan.add(found);
+            return new BookImpl(bTitle, bAuthor);
+        }
     }
 
     /**
@@ -95,6 +122,40 @@ public class LibraryImpl implements Library{
      */
     @Override
     public boolean returnBook(Book book) {
-        return false;
+        boolean isOnLoan = this.isBookInList(book.getTitle(), this.booksOnLoan);
+        if (!isOnLoan) {
+            return false;
+        } else {
+            BookImpl found = null;
+            for (BookImpl b : this.booksOnLoan) {
+                if (b.getTitle().equals(book.getTitle())) {
+                    found = b;
+                    break;
+                }
+            }
+            this.booksOnLoan.remove(found);
+            this.availableBooks.add(found);
+            return true;
+        }
+    }
+
+    /**
+     * Determine if a book is already in the library
+     * @param title The title of the book to search for
+     * @return True if the book already exists, false if not
+     */
+    private boolean isBookInList(String title, List<BookImpl> listToSearch) {
+        if (listToSearch.isEmpty()) {
+            return false;
+        } else {
+            boolean isInLibrary = false;
+            for (BookImpl b : listToSearch) {
+                if (b.getTitle().equals(title)) {
+                    isInLibrary = true;
+                    break;
+                }
+            }
+            return isInLibrary;
+        }
     }
 }
