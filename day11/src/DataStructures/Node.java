@@ -4,7 +4,8 @@
  * @author Laurent Mignot
  */
 package DataStructures;
-public class Node<T> {
+
+public class Node<T extends Comparable<? super T>> implements Comparable<T>{
 
     private T value;
     private Node<T> next;
@@ -14,6 +15,11 @@ public class Node<T> {
         this.value = value;
         this.next = null;
         this.prev = null;
+    }
+
+    @Override
+    public int compareTo(T n) {
+        return n.compareTo(this.value);
     }
 
     public T getValue () {

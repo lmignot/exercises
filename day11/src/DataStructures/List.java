@@ -20,7 +20,7 @@
  * @author PiJ
  */
 package DataStructures;
-public interface List<T> {
+public interface List<T extends Comparable<? super T>> {
 	/**
 	 * Returns true if the list is empty, false otherwise. 
 	 * 

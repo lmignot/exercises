@@ -4,10 +4,9 @@
  * @author Laurent Mignot
  */
 package DataStructures;
-
 import java.util.EmptyStackException;
 
-public class LinkedList<T> implements List<T> {
+public class LinkedList<T extends Comparable<? super T>> implements List<T> {
 
     private int size;
     private Node<T> head;
@@ -189,7 +188,7 @@ public class LinkedList<T> implements List<T> {
      * @param index the index to check
      * @return true if out of bounds, false otherwise
      */
-    private boolean isOutOfBounds (int index) {
+    protected boolean isOutOfBounds (int index) {
         return (index < 0 || index > (this.size - 1));
     }
 }

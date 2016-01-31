@@ -1,5 +1,5 @@
 /**
- * Created by lmignot on 18/01/2016.
+ * Testing Generics - PiJ day 11
  */
 
 import org.junit.Test;
@@ -12,9 +12,12 @@ public class CompanyTest {
         Company cp = new Company();
 
         cp.addEmployee("John Doe", "29288199X");
-        cp.addEmployee("Jane Smith", "19874490C");
+        cp.addEmployee("Zane Zoolander", "19874490C");
+        cp.addEmployee("Jane Smith", "19874490Z");
+        cp.addEmployee("Adam Elderson", "19874490F");
+        cp.addEmployee("Peter Baker", "198744786Y");
         cp.prettyPrint();
 
-        assertEquals("Company lists should have correct size", cp.getListSize(), 2);
+        assertEquals("Company lists should have correct size", cp.getListSize(), 5);
     }
 }

@@ -7,7 +7,7 @@ package DataStructures;
 
 import java.util.EmptyStackException;
 
-public class StackImpl<T> extends AbstractStack<T> {
+public class StackImpl<T extends Comparable<? super T>> extends AbstractStack<T> {
 
     public StackImpl (List<T> list) {
         super(list);

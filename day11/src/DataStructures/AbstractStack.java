@@ -13,7 +13,8 @@
  * @author PiJ
  */
 package DataStructures;
-public abstract class AbstractStack<T> implements Stack<T> {
+
+public abstract class AbstractStack<T extends Comparable<? super T>> implements Stack<T> {
     /**
      * The data structure where the elements on the stack are stored. 
      */
