@@ -10,6 +10,7 @@ public class LibraryImpl implements Library{
     private final String name;
     private int maxBooksPerUser = 3;
 
+    // @TODO: change book lists to maps
     private List<RegisteredLibraryUser> libraryUsers;
     private List<Book> availableBooks;
     private List<Book> booksOnLoan;
