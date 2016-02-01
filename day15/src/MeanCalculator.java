@@ -18,19 +18,27 @@ public class MeanCalculator {
         int currentNum = 0;
         int howManyNumbers = 0;
 
-        howManyNumbers = getInteger(sc, "How many numbers would you like to calculate the average for?");
+        while (howManyNumbers <= 0) {
+            howManyNumbers = getInteger(sc,
+                    "How many numbers would you like to calculate the average for?",
+                    "That's not a valid integer, please try again!");
+        }
+
 
         List<Integer> capturedNumbers = new ArrayList<>(howManyNumbers);
 
         while (currentNum < howManyNumbers) {
-            capturedNumbers.add(getInteger(sc, "Enter the next number :"));
+            capturedNumbers.add(getInteger(sc,
+                    "Enter the next number: ",
+                    "That's not a valid integer, please try again!"));
             currentNum++;
         }
 
-        System.out.println("The mean average is: " + getMean(capturedNumbers));
+        System.out.println("\nThe mean average is: " + getMean(capturedNumbers));
+        sc.close();
     }
 
-    private int getInteger (Scanner scanner, String inputMsg) {
+    private int getInteger (Scanner scanner, String inputMsg, String errMsg) {
         boolean valid = false;
         int result = 0;
         do {
@@ -39,7 +47,7 @@ public class MeanCalculator {
                 result = scanner.nextInt();
                 valid = true;
             } catch (InputMismatchException ex) {
-                System.out.println("That's not a valid Integer, please try again!");
+                System.out.println(errMsg);
             }
             // flush input because nextInt() does not capture \n
             scanner.nextLine();
