@@ -8,32 +8,34 @@ import java.util.Scanner;
  */
 public class MeanCalculator {
 
-    private final int MAX_INPUT = 10;
-
     public static void main (String[] args) {
         MeanCalculator calc = new MeanCalculator();
         calc.launch();
     }
 
     private void launch () {
-        List<Integer> capturedNumbers = new ArrayList<>(MAX_INPUT);
         Scanner sc = new Scanner(System.in);
         int currentNum = 0;
+        int howManyNumbers = 0;
 
-        while (currentNum < MAX_INPUT) {
-            capturedNumbers.add(getInteger(sc));
+        howManyNumbers = getInteger(sc, "How many numbers would you like to calculate the average for?");
+
+        List<Integer> capturedNumbers = new ArrayList<>(howManyNumbers);
+
+        while (currentNum < howManyNumbers) {
+            capturedNumbers.add(getInteger(sc, "Enter the next number :"));
             currentNum++;
         }
 
         System.out.println("The mean average is: " + getMean(capturedNumbers));
     }
 
-    private int getInteger (Scanner scanner) {
+    private int getInteger (Scanner scanner, String inputMsg) {
         boolean valid = false;
         int result = 0;
         do {
             try {
-                System.out.print("Enter a number: ");
+                System.out.print(inputMsg);
                 result = scanner.nextInt();
                 valid = true;
             } catch (InputMismatchException ex) {
