@@ -34,7 +34,7 @@ public class FileCp {
         String confirmation = null;
 
         if (!origin.exists()) {
-            System.out.println("File " + original + " does not exist, please try again.");
+            System.err.println("File " + original + " does not exist, please try again.");
             return false;
         }
         if (dest.exists()) {
