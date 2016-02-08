@@ -39,7 +39,10 @@ public class FileCp {
                     System.out.println("Last argument should be a destination folder.");
                 } else {
                     for (int i = 0; i < args.length - 1; i++) {
-                        if (cp(args[i], dest.getName() + File.separator + args[i])) {
+                        String src = args[i];
+                        String dst = dest.getName() + File.separator + args[i];
+                        
+                        if (cp(src, dst)) {
                             System.out.println("Copied " + args[i] + " to " +
                                     dest.getName() + File.separator + args[i]);
                         } else {
@@ -55,55 +58,66 @@ public class FileCp {
     public static boolean cp (String original, String destination) {
         File origin = new File(CWD + File.separator + original);
         File dest = new File(CWD + File.separator + destination);
-        String confirmation;
 
         if (!origin.exists()) {
             System.err.println("File " + original + " does not exist, please try again.");
             return false;
         }
 
-        // destination file exists so get an overwrite confirmation
+        boolean shouldWrite = true;
+        boolean didWrite = false;
+
         if (dest.exists()) {
-            System.out.print("A file named " + destination + " exists, do you want to overwrite it? (Y/N) ");
-            Scanner sc = new Scanner(System.in);
-            confirmation = sc.nextLine();
-            if (!confirmation.equals("Y") && !confirmation.equals("y")) {
+            System.out.print("A file named " + destination + " exists, do you want to overwrite it? (y/n) ");
+            if (new Scanner(System.in).nextLine().equals("n")) {
                 System.out.println("Exiting... goodbye!");
-                return false;
+                shouldWrite = false;
             }
-        } else {
-            confirmation = "y";
         }
 
-        if (confirmation != null) {
+        if (shouldWrite) {
             System.out.println("Copying " + origin.getPath() + " to " + dest.getPath());
-
-            // read in the file contents
-            try (BufferedReader in = new BufferedReader(new FileReader(origin))) {
-                
-                // write the file contents to the destination file
-                try (Writer writer = new BufferedWriter(
-                    new OutputStreamWriter(
-                        new FileOutputStream(dest), "utf-8"
-                    )
-                )) {
-                    String line;
-                    while((line = in.readLine()) != null) {
-                        writer.write(line + "\n");
-                    }
-                    return true;
-                } catch (IOException ex) {
-                    System.err.println("Encountered an error while writing to file " + destination);
-                    ex.printStackTrace();
-                }
-        } catch (FileNotFoundException ex) {
-                System.err.println("The file " + original + " does not exist.");
-                ex.printStackTrace();
-            } catch (IOException ex) {
-                System.err.println("Encountered an error while reading file " + original);
-                ex.printStackTrace();
+            String output = readFile(origin);
+            if (output != null) {
+                didWrite = writeFile(output, dest);
             }
+        }
+
+        return didWrite;
+    }
+
+    public static boolean writeFile (String contents, File f) {
+        try (Writer w = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), "utf-8"))) {
+            w.write(contents);
+            return true;
+        } catch (IOException ex) {
+            System.err.println("Encountered an error while writing to file " + f.getName());
+            ex.printStackTrace();
         }
         return false;
     }
+
+    public static String readFile (File f) {
+        StringBuilder builder = new StringBuilder();
+        String result = null;
+        try (BufferedReader in = new BufferedReader(new FileReader(f))) {
+            String line;
+            while((line = in.readLine()) != null) {
+                builder.append(line + "\n");
+            }
+        } catch (FileNotFoundException ex) {
+            System.err.println("The file " + f.getName() + " does not exist.");
+            ex.printStackTrace();
+            return result;
+        } catch (IOException ex) {
+            System.err.println("Encountered an error while reading file " + f.getName());
+            ex.printStackTrace();
+            return result;
+        }
+        if (builder.toString().length() != 0) {
+            result = builder.toString();
+        }
+        return result;
+    }
+
 }
