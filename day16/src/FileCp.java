@@ -41,7 +41,7 @@ public class FileCp {
                     for (int i = 0; i < args.length - 1; i++) {
                         String src = args[i];
                         String dst = dest.getName() + File.separator + args[i];
-                        
+
                         if (cp(src, dst)) {
                             System.out.println("Copied " + args[i] + " to " +
                                     dest.getName() + File.separator + args[i]);
@@ -70,7 +70,7 @@ public class FileCp {
         if (dest.exists()) {
             System.out.print("A file named " + destination + " exists, do you want to overwrite it? (y/n) ");
             if (new Scanner(System.in).nextLine().equals("n")) {
-                System.out.println("Exiting... goodbye!");
+                System.out.println("Skipping " + destination);
                 shouldWrite = false;
             }
         }
