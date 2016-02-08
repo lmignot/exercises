@@ -28,10 +28,10 @@ public class FileCat {
                 System.out.println(line);
             }
         } catch (FileNotFoundException ex) {
-            System.out.println("The file " + filename + " does not exist.");
+            System.err.println("The file " + filename + " does not exist.");
             ex.printStackTrace();
         } catch (IOException ex) {
-            System.out.println("Encountered an error while reading file " + filename);
+            System.err.println("Encountered an error while reading file " + filename);
             ex.printStackTrace();
         }
     }
