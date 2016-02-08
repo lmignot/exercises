@@ -30,7 +30,7 @@ public class FileUtils {
             files = dirToList.listFiles();
             if (files != null) {
                 for (File f : files) {
-                    System.out.println(f.getName());
+                    System.out.println((f.isDirectory() ? "Dir" : "File") + "\t" + f.getName());
                 }
             }
         }
