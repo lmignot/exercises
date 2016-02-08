@@ -38,7 +38,7 @@ public class FileCp {
             return false;
         }
         if (dest.exists()) {
-            System.out.print("A file named " + destination + " exists, do you want to overwrite it? (Y/N)");
+            System.out.print("A file named " + destination + " exists, do you want to overwrite it? (Y/N) ");
             Scanner sc = new Scanner(System.in);
             confirmation = sc.nextLine();
             if (!confirmation.equals("Y") && !confirmation.equals("y")) {
@@ -48,6 +48,7 @@ public class FileCp {
         }
 
         if (confirmation != null) {
+            System.out.println("Copying " + origin.getPath() + " to " + dest.getPath());
             try (BufferedReader in = new BufferedReader(new FileReader(origin))) {
                 try (Writer writer = new BufferedWriter(
                     new OutputStreamWriter(
