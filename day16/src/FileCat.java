@@ -11,7 +11,11 @@ public class FileCat {
 
     public static void main (String[] args) {
         if (args != null && args.length > 0) {
-            cat(args[0]);
+            // cat(args[0]);
+            // change to read list of files from cmd line
+            for(String f : args) {
+                cat(f);
+            }
         }
     }
 
