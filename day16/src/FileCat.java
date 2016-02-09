@@ -22,17 +22,12 @@ public class FileCat {
     private static void cat (String filename) {
         File file = new File(CWD + File.separator + "data" + File.separator + filename);
 
-        try (BufferedReader in = new BufferedReader(new FileReader(file))) {
-            String line;
-            while((line = in.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (FileNotFoundException ex) {
-            System.err.println("The file " + filename + " does not exist.");
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            System.err.println("Encountered an error while reading file " + filename);
-            ex.printStackTrace();
+        String contents = FileUtils.readFile(file);
+
+        if (contents != null) {
+            System.out.println(contents);
+        } else {
+            System.err.println("There was an error reading from the file" + file.getName());
         }
     }
 }

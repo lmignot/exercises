@@ -77,47 +77,15 @@ public class FileCp {
 
         if (shouldWrite) {
             System.out.println("Copying " + origin.getPath() + " to " + dest.getPath());
-            String output = readFile(origin);
+            String output = FileUtils.readFile(origin);
             if (output != null) {
-                didWrite = writeFile(output, dest);
+                didWrite = FileUtils.writeFile(output, dest);
+            } else {
+                System.err.println("Failed to copy as the file was empty.");
             }
         }
 
         return didWrite;
-    }
-
-    public static boolean writeFile (String contents, File f) {
-        try (Writer w = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), "utf-8"))) {
-            w.write(contents);
-            return true;
-        } catch (IOException ex) {
-            System.err.println("Encountered an error while writing to file " + f.getName());
-            ex.printStackTrace();
-        }
-        return false;
-    }
-
-    public static String readFile (File f) {
-        StringBuilder builder = new StringBuilder();
-        String result = null;
-        try (BufferedReader in = new BufferedReader(new FileReader(f))) {
-            String line;
-            while((line = in.readLine()) != null) {
-                builder.append(line + "\n");
-            }
-        } catch (FileNotFoundException ex) {
-            System.err.println("The file " + f.getName() + " does not exist.");
-            ex.printStackTrace();
-            return result;
-        } catch (IOException ex) {
-            System.err.println("Encountered an error while reading file " + f.getName());
-            ex.printStackTrace();
-            return result;
-        }
-        if (builder.toString().length() != 0) {
-            result = builder.toString();
-        }
-        return result;
     }
 
 }
