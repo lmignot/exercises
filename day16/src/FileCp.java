@@ -1,6 +1,5 @@
-import java.io.*;
+import java.io.File;
 import java.nio.file.Paths;
-import java.util.Scanner;
 
 /**
  * Exercise 4 for day 16 of PiJ
@@ -68,11 +67,7 @@ public class FileCp {
         boolean didWrite = false;
 
         if (dest.exists()) {
-            System.out.print("A file named " + destination + " exists, do you want to overwrite it? (y/n) ");
-            if (new Scanner(System.in).nextLine().equals("n")) {
-                System.out.println("Skipping " + destination);
-                shouldWrite = false;
-            }
+            shouldWrite = FileUtils.confirmOverwrite(dest);
         }
 
         if (shouldWrite) {
