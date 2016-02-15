@@ -1,5 +1,5 @@
 /**
- * Created by lmignot on 15/02/2016.
+ * Day 17 exercise 3
  */
 public class BankAccount {
     private int balance = 0;

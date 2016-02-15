@@ -1,5 +1,5 @@
 /**
- * Created by lmignot on 15/02/2016.
+ * Day 17 exercise 2
  */
 public class Counter {
     private int n = 0;
