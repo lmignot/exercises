@@ -16,7 +16,7 @@
  * @author PiJ
  */
 package DataStructures;
-public interface Stack<T extends Comparable<? super T>> {
+public interface Stack<T> {
 	/**
 	 * Returns true if the stack is empty, false otherwise. 
 	 * 

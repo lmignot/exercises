@@ -14,11 +14,11 @@
  */
 package DataStructures;
 
-public abstract class AbstractStack<T extends Comparable<? super T>> implements Stack<T> {
+public abstract class AbstractStack<T> implements Stack<T> {
     /**
      * The data structure where the elements on the stack are stored. 
      */
-    protected List<T> internalList;
+    protected GenericList<T> internalList;
 
     /**
      * Creates a new abstract stack using the provided list as the
@@ -31,7 +31,7 @@ public abstract class AbstractStack<T extends Comparable<? super T>> implements 
      * 
      * @param list the list to be used 
      */
-    public AbstractStack(List<T> list) {
+    public AbstractStack(GenericList<T> list) {
 	  this.internalList = list;
     }
 }

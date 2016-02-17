@@ -4,12 +4,11 @@
  * @author Laurent Mignot
  */
 package DataStructures;
-
 import java.util.EmptyStackException;
 
-public class StackImpl<T extends Comparable<? super T>> extends AbstractStack<T> {
+public class StackImpl<T extends Number> extends AbstractStack<T> {
 
-    public StackImpl (List<T> list) {
+    public StackImpl (GenericList<T> list) {
         super(list);
     }
 
@@ -28,7 +27,7 @@ public class StackImpl<T extends Comparable<? super T>> extends AbstractStack<T>
     }
 
     /**
-     * @see Stack#push(T)
+     * @see Stack#push(Object)
      */
     public void push (T item) {
         if (this.internalList != null && item != null) {
