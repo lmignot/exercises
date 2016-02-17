@@ -1,5 +1,5 @@
 /**
- * Testing Generics - PiJ day 11
+ * PiJ day 11 - exercise 3
  */
 
 import org.junit.Test;

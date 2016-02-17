@@ -1,5 +1,5 @@
 /**
- * Created by lmignot on 14/01/2016.
+ * Day 11 - exercise
  */
 public class Comparator {
     public static int getMax(int n, int m) {
@@ -15,5 +15,11 @@ public class Comparator {
         int n2 = Integer.parseInt(number2);
 
         return String.valueOf((n1 > n2) ? n1 : n2);
+    }
+
+    public static <T> void swap (T[] a, int b, int c) {
+        T t = a[b];
+        a[b] = a[c];
+        a[c] = t;
     }
 }
