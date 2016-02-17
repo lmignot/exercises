@@ -45,44 +45,4 @@ public class ResponsiveUi {
 
         sc.close();
     }
-
-    private static class Collector {
-        private String collected = "";
-
-        private synchronized void addCompletedTask(int taskId) {
-            if (this.collected.length() != 0) {
-                this.collected += ", ";
-            }
-            this.collected += taskId;
-        }
-
-        private synchronized String getCompletedTasks() {
-            String result = this.collected;
-            this.collected = "";
-            return result;
-        }
-    }
-
-    private static class Task implements Runnable {
-
-        private int id;
-        private int delay;
-        private Collector collector;
-
-        Task(int id, int delay, Collector collector) {
-            this.id = id;
-            this.delay = delay;
-            this.collector = collector;
-        }
-
-        @Override
-        public void run() {
-            try {
-                Thread.sleep(this.delay);
-            } catch (InterruptedException ex) {
-                //no-op
-            }
-            this.collector.addCompletedTask(this.id);
-        }
-    }
 }
