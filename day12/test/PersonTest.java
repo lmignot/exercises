@@ -1,6 +1,10 @@
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * PiJ day 12 - exercise 3
+ */
+
 public class PersonTest {
 
     @Test

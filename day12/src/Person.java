@@ -1,6 +1,8 @@
 /**
+ * PiJ day 12 - exercise 3
  * Person class created to practice writing unit tests
  */
+
 public class Person {
 
     /**

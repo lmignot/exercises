@@ -1,5 +1,6 @@
 /**
  * A class containing various hashing utilities
+ * PiJ day 12 - exercise 2
  */
 public class HashUtilities {
 

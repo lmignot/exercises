@@ -1,7 +1,13 @@
-import java.util.Random;
 import org.junit.Test;
+
+import java.util.Random;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+
+/**
+ * PiJ day 12 - exercise 2
+ */
 
 public class HashUtilitiesTest {
 
