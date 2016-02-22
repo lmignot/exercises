@@ -1,19 +1,26 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Day 17 exercise 4
  */
 public class Collector {
-    private String collected = "";
+    private List<Integer> collected = null;
 
-    public synchronized void addCompletedTask (int taskId) {
-        if (this.collected.length() != 0) {
-            this.collected += ", ";
-        }
-        this.collected += taskId;
+    public Collector () {
+        collected = new ArrayList<>();
     }
 
-    public synchronized String getCompletedTasks () {
-        String result = this.collected;
-        this.collected = "";
+    public synchronized void addCompletedTask (int taskId) {
+        collected.add(taskId);
+    }
+
+    public List<Integer> getCompletedTasks () {
+        if (collected.isEmpty()) {
+            return new ArrayList<>();
+        }
+        List<Integer> result = collected;
+        collected = new ArrayList<>();
         return result;
     }
 }
