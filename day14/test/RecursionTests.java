@@ -11,7 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RecursionTests {
 
     private static final int TEN = 10;
-    private static final int FIFTY = 50;
     private static final int ONE_HUNDRED = 100;
     private static final int ONE_THOUSAND = 1000;
 
@@ -38,6 +37,48 @@ public class RecursionTests {
     }
 
     @Test
+    public void quickSortTestTenItems () {
+        List<Integer> toSort = new ArrayList<>(TEN);
+
+        toSort.add(3);
+        toSort.add(9);
+        toSort.add(4);
+        toSort.add(8);
+        toSort.add(2);
+        toSort.add(1);
+        toSort.add(0);
+        toSort.add(5);
+        toSort.add(6);
+        toSort.add(7);
+
+        List<Integer> sorted = su.quickSort(toSort);
+
+        System.out.println(toSort);
+        System.out.println(sorted);
+    }
+
+    @Test
+    public void quickSortTestTenStringItems () {
+        List<String> toSort = new ArrayList<>(TEN);
+
+        toSort.add("John");
+        toSort.add("Doe");
+        toSort.add("Zulu");
+        toSort.add("Adam");
+        toSort.add("BBC");
+        toSort.add("Bbj");
+        toSort.add("Xanthophyll");
+        toSort.add("Jane");
+        toSort.add("Xenia");
+        toSort.add("Harmon");
+
+        List<String> sorted = su.quickSort(toSort);
+
+        System.out.println(toSort);
+        System.out.println(sorted);
+    }
+
+    @Test
     public void mergeSortTestOneThousandItems () {
         List<Integer> toMerge = new ArrayList<>(ONE_THOUSAND);
 
@@ -46,6 +87,19 @@ public class RecursionTests {
         }
 
         List<Integer> sorted = su.mergeSort(toMerge);
+
+        System.out.println(sorted);
+    }
+
+    @Test
+    public void mergeSortTestOneThousandItemsString () {
+        List<String> toMerge = new ArrayList<>(ONE_THOUSAND);
+
+        for(int i = 0; i < ONE_THOUSAND; i++) {
+            toMerge.add(i, String.valueOf(Math.abs(ONE_THOUSAND * Math.random())));
+        }
+
+        List<String> sorted = su.mergeSort(toMerge);
 
         System.out.println(sorted);
     }
