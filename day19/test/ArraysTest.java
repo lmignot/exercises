@@ -29,4 +29,14 @@ public class ArraysTest {
         System.out.println("Sorted by length reverse: " + Arrays.asList(arr));
     }
 
+    @Test
+    public void sortArrayByFirstCharacter () {
+        String[] arr = {"Beta", "Ypsilon", "Zulu", "Romeo", "Xray", "Alpha", "Gamma", "Delta"};
+
+        System.out.println("Unsorted: " + Arrays.asList(arr));
+
+        Arrays.sort(arr, String::compareTo);
+
+        System.out.println("Sorted by first character: " + Arrays.asList(arr));
+    }
 }
