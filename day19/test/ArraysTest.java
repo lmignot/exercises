@@ -39,4 +39,15 @@ public class ArraysTest {
 
         System.out.println("Sorted by first character: " + Arrays.asList(arr));
     }
+
+    @Test
+    public void sortArrayByE () {
+        String[] arr = {"Beta", "Ypsilon", "Zulu", "Romeo", "Xray", "Alpha", "Gamma", "Delta"};
+
+        System.out.println("Unsorted: " + Arrays.asList(arr));
+
+        Arrays.sort(arr, StringUtilsImpl.eChecker::check);
+
+        System.out.println("Sorted by contains 'e': " + Arrays.asList(arr));
+    }
 }
