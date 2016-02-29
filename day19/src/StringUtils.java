@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -24,6 +25,10 @@ public class StringUtils {
 
     public static List<String> allMatches (List<String> input, SinglePredicate fn) {
         return input.stream().filter(fn::matches).collect(Collectors.toList());
+    }
+
+    public static List<String> transformedList (List<String> input, Function<String,String> fn) {
+        return input.stream().map(s -> fn.apply(s)).collect(Collectors.toList());
     }
 
 }
