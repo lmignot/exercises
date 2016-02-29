@@ -1,8 +1,21 @@
 /**
- * PiJ day 19 - exercise 2
+ * PiJ day 19 - exercise 3
  */
-public interface StringUtils {
+public class StringUtils {
 
-    int check (String a, String b);
+    private StringUtils () {}
 
+    public static int eChecker (String a, String b)  {
+        int result = 0;
+        if (a.contains("e") && !b.contains("e")) {
+            result = -1;
+        } else if (b.contains("e") && !a.contains("e")) {
+            result = 1;
+        }
+        return result;
+    }
+
+    public static String betterString (String a, String b, TwoStringPredicate fn) {
+        return (fn.isBetter(a, b) ? a : b);
+    }
 }
