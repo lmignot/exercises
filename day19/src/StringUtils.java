@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * PiJ day 19 - exercise 3
  */
@@ -18,4 +21,9 @@ public class StringUtils {
     public static String betterString (String a, String b, TwoStringPredicate fn) {
         return (fn.isBetter(a, b) ? a : b);
     }
+
+    public static List<String> allMatches (List<String> input, SinglePredicate fn) {
+        return input.stream().filter(fn::matches).collect(Collectors.toList());
+    }
+
 }
