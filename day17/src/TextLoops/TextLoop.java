@@ -1,3 +1,5 @@
+package TextLoops;
+
 /**
  * Day 17 exercise 1
  */
