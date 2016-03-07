@@ -12,11 +12,10 @@ public class StringExercises {
     public static void main(String... args) {
         StringExercises exerciser = new StringExercises();
 
-        List<String> words = Arrays.asList("act", "alpha", "boo", "bravo", "charlie", "doe", "delta", "echo",
-                "foxtrot", "fox", "golf", "how", "hotel", "india", "juliet", "kilo", "lima", "mike", "november",
-                "oscar", "papa", "quebec", "romeo", "sierra", "sam", "tango", "tar", "uniform", "whisky", "xray",
-                "yankee",
-                "zulu");
+        List<String> words = Arrays.asList("act", "alpha", "boo", "bee", "bravo", "charlie", "doe", "delta", "echo",
+                "foxtrot", "fox", "flee", "golf", "how", "hotel", "india", "juliet", "kilo", "lima", "mae", "mike",
+                "november", "oscar", "papa", "quebec", "romeo", "sierra", "sam", "see", "tango", "tar", "tea",
+                "uniform", "wee", "whisky", "ex", "xray", "yankee", "zulu", "zit");
 
         exerciser.printOnSeparateLinesWithDoubleSpacePrefix(words);
         exerciser.printOnSeparateLines(words);
@@ -26,6 +25,8 @@ public class StringExercises {
         exerciser.shortWords(words);
         exerciser.wordsWithB(words);
         exerciser.evenLengthWords(words);
+        exerciser.upperCaseLessThanFourContains(words, "e");
+        exerciser.upperCaseLessThanFourContains(words, "q");
     }
 
     private void printHeader(String header) {
@@ -70,6 +71,18 @@ public class StringExercises {
     private void evenLengthWords(List<String> list) {
         printHeader("Even length Words");
         list.stream().filter(s -> s.length() %2 == 0).forEach(System.out::println);
+    }
+
+    private void upperCaseLessThanFourContains(List<String> list, String check) {
+        printHeader("Uppercase, Less than 4, Contains " + check);
+        String out = list.stream()
+            .map(String::toUpperCase)
+            .filter(s -> s.length() < 4)
+            .filter(s -> s.contains(check.toUpperCase()))
+            .findFirst()
+            .orElse("Not found!");
+
+        System.out.println(out);
     }
 
 }
