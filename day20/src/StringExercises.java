@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class StringExercises {
         exerciser.evenLengthWords(words);
         exerciser.upperCaseLessThanFourContains(words, "e");
         exerciser.upperCaseLessThanFourContains(words, "q");
+        exerciser.proveLaziness(words, "e");
     }
 
     private void printHeader(String header) {
@@ -35,7 +37,7 @@ public class StringExercises {
 
     private void printOnSeparateLinesWithDoubleSpacePrefix (List<String> list) {
         printHeader("Words on separate Lines with 2-space prefix");
-        list.stream().map(s -> "  " + s).forEach(System.out::println);
+        list.parallelStream().map(s -> "  " + s).forEach(System.out::println);
     }
 
     private void printOnSeparateLines (List<String> list) {
@@ -83,6 +85,25 @@ public class StringExercises {
             .orElse("Not found!");
 
         System.out.println(out);
+    }
+
+    private void proveLaziness(List<String> list, String check) {
+        printHeader("Uppercase, Less than 4, Contains " + check);
+        List<String> tmp = new ArrayList<>();
+        String out = list.stream()
+            .map(s -> {
+                String o = s.toUpperCase();
+                tmp.add(o);
+                return o;
+            })
+            .filter(s -> s.length() < 4)
+            .filter(s -> s.contains(check.toUpperCase()))
+            .findFirst()
+            .orElse("Not found!");
+
+        System.out.println(out);
+        System.out.println("Uppercased: ");
+        tmp.stream().forEach(System.out::println);
     }
 
 }
