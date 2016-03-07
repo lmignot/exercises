@@ -19,6 +19,7 @@ public class StringExercises {
                 "zulu");
 
         exerciser.printOnSeparateLinesWithDoubleSpacePrefix(words);
+        exerciser.printOnSeparateLines(words);
     }
 
     private void printHeader(String header) {
@@ -28,6 +29,11 @@ public class StringExercises {
     private void printOnSeparateLinesWithDoubleSpacePrefix (List<String> list) {
         printHeader("Words on separate Lines with 2-space prefix");
         list.stream().map(s -> "  " + s).forEach(System.out::println);
+    }
+
+    private void printOnSeparateLines (List<String> list) {
+        printHeader("Words on separate Lines");
+        list.stream().forEach(System.out::println);
     }
 
 }
