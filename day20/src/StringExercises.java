@@ -23,6 +23,9 @@ public class StringExercises {
         exerciser.excitingWords(words);
         exerciser.replacedWords(words);
         exerciser.uppercasedWords(words);
+        exerciser.shortWords(words);
+        exerciser.wordsWithB(words);
+        exerciser.evenLengthWords(words);
     }
 
     private void printHeader(String header) {
@@ -52,6 +55,21 @@ public class StringExercises {
     private void uppercasedWords(List<String> list) {
         printHeader("Uppercase Words");
         list.stream().map(String::toUpperCase).forEach(System.out::println);
+    }
+
+    private void shortWords(List<String> list) {
+        printHeader("Short Words");
+        list.stream().filter(s -> s.length() < 4).forEach(System.out::println);
+    }
+
+    private void wordsWithB(List<String> list) {
+        printHeader("Words with b");
+        list.stream().filter(s -> s.contains("b")).forEach(System.out::println);
+    }
+
+    private void evenLengthWords(List<String> list) {
+        printHeader("Even length Words");
+        list.stream().filter(s -> s.length() %2 == 0).forEach(System.out::println);
     }
 
 }
