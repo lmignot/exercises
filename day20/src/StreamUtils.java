@@ -21,4 +21,14 @@ public final class StreamUtils {
             .distinct()
             .collect(ArrayList::new,ArrayList::add,ArrayList::addAll);
     }
+
+    public static List<Integer> orderedNumberList (int start, int step, int limit) {
+        List<Integer> list = new ArrayList<>();
+        int l = 0;
+        for (int i = start; l <= limit; l++) {
+            list.add(i);
+            i += step;
+        }
+        return list;
+    }
 }
