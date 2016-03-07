@@ -20,6 +20,9 @@ public class StringExercises {
 
         exerciser.printOnSeparateLinesWithDoubleSpacePrefix(words);
         exerciser.printOnSeparateLines(words);
+        exerciser.excitingWords(words);
+        exerciser.replacedWords(words);
+        exerciser.uppercasedWords(words);
     }
 
     private void printHeader(String header) {
@@ -34,6 +37,21 @@ public class StringExercises {
     private void printOnSeparateLines (List<String> list) {
         printHeader("Words on separate Lines");
         list.stream().forEach(System.out::println);
+    }
+
+    private void excitingWords(List<String> list) {
+        printHeader("Exciting Words");
+        list.stream().map(s -> s + "!").forEach(System.out::println);
+    }
+
+    private void replacedWords(List<String> list) {
+        printHeader("Replaced Words");
+        list.stream().map(s -> s.replace("i", "eye")).forEach(System.out::println);
+    }
+
+    private void uppercasedWords(List<String> list) {
+        printHeader("Uppercase Words");
+        list.stream().map(String::toUpperCase).forEach(System.out::println);
     }
 
 }
