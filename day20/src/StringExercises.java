@@ -31,6 +31,7 @@ public class StringExercises {
         exerciser.proveLaziness(words, "e");
         exerciser.concatUpper(words);
         exerciser.concatUpperWithMap(words);
+        exerciser.concatWithComma(words);
     }
 
     private void printHeader(String header) {
@@ -119,6 +120,12 @@ public class StringExercises {
     private void concatUpperWithMap(List<String> list) {
         printHeader("Concatenating to uppercase with map->reduce");
         String result = list.stream().map(String::toUpperCase).reduce("", String::concat);
+        System.out.println(result);
+    }
+
+    private void concatWithComma(List<String> list) {
+        printHeader("Concatenating delimited by comma");
+        String result = list.stream().reduce("", (sA, sB) -> sA.length() > 0 ? sA + "," + sB : sA + sB);
         System.out.println(result);
     }
 
