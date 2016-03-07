@@ -30,6 +30,7 @@ public class StringExercises {
         exerciser.upperCaseLessThanFourContains(words, "q");
         exerciser.proveLaziness(words, "e");
         exerciser.concatUpper(words);
+        exerciser.concatUpperWithMap(words);
     }
 
     private void printHeader(String header) {
@@ -108,10 +109,16 @@ public class StringExercises {
     }
 
     private void concatUpper(List<String> list) {
-        printHeader("Concatenating to uppercase");
+        printHeader("Concatenating to uppercase with reduce");
         String result = list.stream().reduce("", (sA, sB) ->
             sA.toUpperCase().concat(sB.toUpperCase())
         );
+        System.out.println(result);
+    }
+
+    private void concatUpperWithMap(List<String> list) {
+        printHeader("Concatenating to uppercase with map->reduce");
+        String result = list.stream().map(String::toUpperCase).reduce("", String::concat);
         System.out.println(result);
     }
 
