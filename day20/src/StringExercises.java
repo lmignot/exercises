@@ -34,52 +34,48 @@ public class StringExercises {
         exerciser.concatWithComma(words);
     }
 
-    private void printHeader(String header) {
-        System.out.printf("%n%n::: %s :::%n%n", header);
-    }
-
     private void printOnSeparateLinesWithDoubleSpacePrefix (List<String> list) {
-        printHeader("Words on separate Lines with 2-space prefix");
+        StreamUtils.printHeader("Words on separate Lines with 2-space prefix");
         list.parallelStream().map(s -> "  " + s).forEach(System.out::println);
     }
 
     private void printOnSeparateLines (List<String> list) {
-        printHeader("Words on separate Lines");
+        StreamUtils.printHeader("Words on separate Lines");
         list.stream().forEach(System.out::println);
     }
 
     private void excitingWords(List<String> list) {
-        printHeader("Exciting Words");
+        StreamUtils.printHeader("Exciting Words");
         list.stream().map(s -> s + "!").forEach(System.out::println);
     }
 
     private void replacedWords(List<String> list) {
-        printHeader("Replaced Words");
+        StreamUtils.printHeader("Replaced Words");
         list.stream().map(s -> s.replace("i", "eye")).forEach(System.out::println);
     }
 
     private void uppercasedWords(List<String> list) {
-        printHeader("Uppercase Words");
+        StreamUtils.printHeader("Uppercase Words");
         list.stream().map(String::toUpperCase).forEach(System.out::println);
     }
 
     private void shortWords(List<String> list) {
-        printHeader("Short Words");
+        StreamUtils.printHeader("Short Words");
         list.stream().filter(s -> s.length() < 4).forEach(System.out::println);
     }
 
     private void wordsWithB(List<String> list) {
-        printHeader("Words with b");
+        StreamUtils.printHeader("Words with b");
         list.stream().filter(s -> s.contains("b")).forEach(System.out::println);
     }
 
     private void evenLengthWords(List<String> list) {
-        printHeader("Even length Words");
+        StreamUtils.printHeader("Even length Words");
         list.stream().filter(s -> s.length() %2 == 0).forEach(System.out::println);
     }
 
     private void upperCaseLessThanFourContains(List<String> list, String check) {
-        printHeader("Uppercase, Less than 4, Contains " + check);
+        StreamUtils.printHeader("Uppercase, Less than 4, Contains " + check);
         String out = list.stream()
             .map(String::toUpperCase)
             .filter(s -> s.length() < 4)
@@ -91,7 +87,7 @@ public class StringExercises {
     }
 
     private void proveLaziness(List<String> list, String check) {
-        printHeader("Proving laziness");
+        StreamUtils.printHeader("Proving laziness");
         List<String> tmp = new ArrayList<>();
         String out = list.stream()
             .map(s -> {
@@ -110,7 +106,7 @@ public class StringExercises {
     }
 
     private void concatUpper(List<String> list) {
-        printHeader("Concatenating to uppercase with reduce");
+        StreamUtils.printHeader("Concatenating to uppercase with reduce");
         String result = list.stream().reduce("", (sA, sB) ->
             sA.toUpperCase().concat(sB.toUpperCase())
         );
@@ -118,13 +114,13 @@ public class StringExercises {
     }
 
     private void concatUpperWithMap(List<String> list) {
-        printHeader("Concatenating to uppercase with map->reduce");
+        StreamUtils.printHeader("Concatenating to uppercase with map->reduce");
         String result = list.stream().map(String::toUpperCase).reduce("", String::concat);
         System.out.println(result);
     }
 
     private void concatWithComma(List<String> list) {
-        printHeader("Concatenating delimited by comma");
+        StreamUtils.printHeader("Concatenating delimited by comma");
         String result = list.stream().reduce("", (sA, sB) -> sA.length() > 0 ? sA + "," + sB : sA + sB);
         System.out.println(result);
     }
