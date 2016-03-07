@@ -1,3 +1,5 @@
+package HashUtilities;
+
 public class HashUtilitiesTest {
 
     public static void main (String[] args) {

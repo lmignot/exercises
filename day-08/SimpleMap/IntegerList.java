@@ -1,3 +1,5 @@
+package SimpleMap;
+
 /**
  * Linked list using integers as ids
  * for use in an int/String map

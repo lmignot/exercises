@@ -1,3 +1,5 @@
+package Supermarket;
+
 public interface PersonQueue {
     /**
      * Adds another Person to the queue

@@ -1,3 +1,5 @@
+package Supermarket;
+
 public class Supermarket {
 
     private PersonQueue queue;

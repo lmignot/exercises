@@ -1,3 +1,5 @@
+package Supermarket;
+
 public class SortedQueue implements PersonQueue {
     private Person tail;
     private Person head;

@@ -1,3 +1,5 @@
+package SimpleMap;
+
 /**
  * Implementation of SimpleMap interface
  * Using IntegerList to store the entries

@@ -1,3 +1,5 @@
+package SimpleMap;
+
 /**
  * Map from integer to Strings
  */

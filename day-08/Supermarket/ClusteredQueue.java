@@ -1,3 +1,5 @@
+package Supermarket;
+
 public class ClusteredQueue implements PersonQueue {
     private SortedQueue retireeQueue;
     private SortedQueue adultQueue;

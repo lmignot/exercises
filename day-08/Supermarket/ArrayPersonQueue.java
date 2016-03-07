@@ -1,3 +1,5 @@
+package Supermarket;
+
 public class ArrayPersonQueue implements PersonQueue {
     private Person[] queue;
     private int size;

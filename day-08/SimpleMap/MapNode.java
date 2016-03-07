@@ -1,3 +1,5 @@
+package SimpleMap;
+
 public class MapNode {
     private int key;
     private String content;

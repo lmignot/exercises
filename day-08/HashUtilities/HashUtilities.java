@@ -1,3 +1,5 @@
+package HashUtilities;
+
 public class HashUtilities {
 
     public static int shortHash (int num) {

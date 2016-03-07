@@ -1,3 +1,5 @@
+package Supermarket;
+
 /**
  * Implementation of PersonQueue using a linked list
  */
