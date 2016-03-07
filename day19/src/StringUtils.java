@@ -23,11 +23,26 @@ public class StringUtils {
         return (fn.isBetter(a, b) ? a : b);
     }
 
+    /**
+     * Returns a new List containing all Strings in
+     * input that return a positive result when fn is applied
+     *
+     * @param input the List to test against
+     * @param fn the Predicate to test each String against
+     * @return a new List with all the matched Strings
+     */
     public static List<String> allMatches (List<String> input, SinglePredicate fn) {
         return input.stream().filter(fn::matches).collect(Collectors.toList());
     }
 
-    public static List<String> transformedList (List<String> input, Function<String,String> fn) {
+    /**
+     * Transforms a List of strings
+     *
+     * @param input the List of Strings to operate on
+     * @param fn the Function to apply to each String
+     * @return a new List containing all Strings in input with the fn applied
+     */
+    public static List<String> transformList (List<String> input, Function<String,String> fn) {
         return input.stream().map(s -> fn.apply(s)).collect(Collectors.toList());
     }
 
