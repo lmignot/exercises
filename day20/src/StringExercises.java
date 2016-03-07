@@ -88,7 +88,7 @@ public class StringExercises {
     }
 
     private void proveLaziness(List<String> list, String check) {
-        printHeader("Uppercase, Less than 4, Contains " + check);
+        printHeader("Proving laziness");
         List<String> tmp = new ArrayList<>();
         String out = list.stream()
             .map(s -> {
