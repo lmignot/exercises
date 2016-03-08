@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 /**
  * Some utility classes for streams
@@ -23,12 +24,9 @@ public final class StreamUtils {
     }
 
     public static List<Integer> orderedNumberList (int start, int step, int limit) {
-        List<Integer> list = new ArrayList<>();
-        int l = 0;
-        for (int i = start; l <= limit; l++) {
-            list.add(i);
-            i += step;
-        }
-        return list;
+        return IntStream
+            .iterate(start, n -> n + step)
+            .limit(limit)
+            .collect(ArrayList::new,ArrayList::add,ArrayList::addAll);
     }
 }
