@@ -13,9 +13,8 @@ public class NumberExercises {
 
         exerciser.randomNumbers(25);
         exerciser.sequentialNumbers(60, 5, 10);
-        exerciser.sumNumbersReduce(StreamUtils.orderedNumberList(12, 3, 20));
-        exerciser.sumNumbersReduceMethodRef(StreamUtils.orderedNumberList(12, 3, 20));
-        exerciser.sumNumbersInParallel(StreamUtils.orderedNumberList(12, 3, 20));
+        exerciser.sumIntegers(StreamUtils.orderedNumberList(12, 3, 20));
+        exerciser.sumDoubles(StreamUtils.randomDoubleList(25));
     }
 
     private void randomNumbers (int size) {
@@ -30,27 +29,25 @@ public class NumberExercises {
         numbers.stream().forEach(System.out::println);
     }
 
-    private void sumNumbersReduce(List<Integer> numbers) {
-        StreamUtils.printHeader("Sum list using reduce");
-        System.out.println("Original list:");
-        numbers.stream().forEach(System.out::println);
-        System.out.print("\nSum: ");
-        System.out.println(numbers.stream().reduce(0, (a,b) -> a+b));
-    }
-
-    private void sumNumbersReduceMethodRef(List<Integer> numbers) {
-        StreamUtils.printHeader("Sum list using reduce with method reference");
-        System.out.println("Original list:");
-        numbers.stream().forEach(System.out::println);
-        System.out.print("\nSum: ");
-        System.out.println(numbers.stream().reduce(Integer::sum).orElse(-1));
-    }
-
-    private void sumNumbersInParallel(List<Integer> numbers) {
+    private void sumIntegers(List<Integer> numbers) {
         StreamUtils.printHeader("Sum list using parallel stream");
         System.out.println("Original list:");
         numbers.stream().forEach(System.out::println);
-        System.out.print("\nSum: ");
+        System.out.print("\nSum sequential: ");
+        System.out.println(numbers.stream().reduce(Integer::sum).orElse(-1));
+        System.out.print("\nSum parallel: ");
         System.out.println(numbers.parallelStream().mapToInt(Integer::valueOf).sum());
+    }
+
+    private void sumDoubles(List<Double> numbers) {
+        StreamUtils.printHeader("Sum doubles");
+        System.out.println("Original list:");
+        numbers.stream().forEach(System.out::println);
+        System.out.print("\nSum parallel: ");
+        System.out.println(numbers.parallelStream().reduce((d1, d2) -> d1 + d2).orElse(-1.00));
+        System.out.print("\nSum sequential: ");
+        System.out.println(numbers.stream().reduce((d1, d2) -> d1 + d2).orElse(-1.00));
+        System.out.print("\nSum parallel: ");
+        System.out.println(numbers.parallelStream().mapToDouble(Double::valueOf).sum());
     }
 }
