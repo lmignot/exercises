@@ -1,9 +1,16 @@
-public class EvenStringPrinter extends String {
+package Miscellaneous;
+
+/**
+ * Commented out as prevents other exercises from compiling
+ * String cannot be extended
+ */
+
+public class EvenStringPrinter /*extends String*/ {
 
     /**
      * Prints the even characters contained in a String
      */
-    public void printEven () {
+    /*public void printEven () {
         int len = super.length();
 
         if (len > 0) {
@@ -13,6 +20,6 @@ public class EvenStringPrinter extends String {
                 }
             }
         }
-    }
+    }*/
 
 }

@@ -1,3 +1,5 @@
+package Phones;
+
 public class PhoneLauncher {
 
     public static void main (String[] args) {
@@ -34,7 +36,7 @@ public class PhoneLauncher {
         myPhone.printCallLog();
 
         System.out.println("");
-        System.out.print("Length of call log should not exceed " + myPhone.callLogMemorySize + "... ");
+        System.out.print("Length of call log should not exceed specified size... ");
         System.out.println(myPhone.getLogSize() <= 10 ? "passed." : "failed.");
 
         System.out.println("");

@@ -1,3 +1,5 @@
+package trees;
+
 public class TreeTests {
 
     public static void main (String[] args) {

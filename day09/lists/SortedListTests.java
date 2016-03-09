@@ -1,7 +1,10 @@
+package lists;
+
 public class SortedListTests {
 
     public static void main (String[] args) {
-        this.launch();
+        SortedListTests tester = new SortedListTests();
+        tester.launch();
     }
 
     public void launch () {

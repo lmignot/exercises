@@ -1,9 +1,12 @@
+package Phones;
 
 /**
  * A SmartPhone is a smarter MobilePhone
  * It can browse the web and provide one's GPS coordinates
  */
 public class SmartPhone extends MobilePhone {
+
+    private boolean internetDial = false;
 
     public SmartPhone (String brand) {
         super(brand);
@@ -14,8 +17,8 @@ public class SmartPhone extends MobilePhone {
      * This implementation simply prints out a line to the screen
      * @param url The url to browse.
      */
-    public void browseWeb (String url) {
-        System.out.println("Launching browser and loading url: " + url);
+    public String browseWeb (String url) {
+        return "Launching browser and loading url: " + url;
     }
 
     /**
@@ -32,16 +35,24 @@ public class SmartPhone extends MobilePhone {
      * This implementation simply prints out a line to the screen
      * @param game the game to play
      */
-    public void playGame (String game) {
-        System.out.println("Launching game: " + game);
+    @Override
+    public String playGame (String game) {
+        return "Launching game: " + game;
+    }
+
+    public boolean didDialViaInternet () {
+        return this.internetDial;
     }
 
     @Override
     public void call (String number) {
-        if (number.substring(0,2).equals("00")) {
+        if (number.substring(0,2).equals("00") ||
+                (number.substring(0,1).equals("+") && !number.substring(1,3).equals("44"))) {
             System.out.println("Calling " + number + " through the internet to save money");
+            this.internetDial = true;
             this.addToLog(number);
         } else {
+            this.internetDial = false;
             super.call(number);
         }
     }

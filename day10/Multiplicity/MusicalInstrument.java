@@ -1,3 +1,5 @@
+package Multiplicity;
+
 /**
  * An interface representing a MusicalInstrument
  */

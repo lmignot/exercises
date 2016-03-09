@@ -2,6 +2,7 @@ import org.junit.Test;
 
 import java.util.Random;
 
+import static HashUtilities.HashUtilities.shortHash;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -16,7 +17,7 @@ public class HashUtilitiesTest {
         int numToTest = 5;
 
         assertEquals("shortHash should return a simple hash for a given number",
-                Math.abs(numToTest % 1000), HashUtilities.shortHash(numToTest));
+                Math.abs(numToTest % 1000), shortHash(numToTest));
     }
 
     @Test
@@ -27,7 +28,7 @@ public class HashUtilitiesTest {
         for (int i = 0; i < oneMillion; i++) {
             int random = randomizer.nextInt(oneMillion);
             int expected = Math.abs(random % 1000);
-            int actual = HashUtilities.shortHash(random);
+            int actual = shortHash(random);
 
             assertEquals("shortHash should return expected hash for a given number", expected, actual);
 

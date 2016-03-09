@@ -1,3 +1,5 @@
+package Miscellaneous;
+
 public class Teacher {
     private String name;
 

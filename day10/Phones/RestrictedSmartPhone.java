@@ -1,3 +1,5 @@
+package Phones;
+
 /**
  * A boring SmartPhone with restricted access
  * Useful for keeping children from wasting too many

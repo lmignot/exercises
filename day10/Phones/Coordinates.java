@@ -1,3 +1,5 @@
+package Phones;
+
 /**
  * Simple class to store a set of coordinates
  */

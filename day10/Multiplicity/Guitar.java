@@ -1,3 +1,5 @@
+package Multiplicity;
+
 /**
  * This is a Guitar, it is a WoodenObject that is a MusicalInstrument
  */

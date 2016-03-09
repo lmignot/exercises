@@ -1,3 +1,5 @@
+package lists;
+
 /**
  * Inteface implementing a tree as a sorted list
  */

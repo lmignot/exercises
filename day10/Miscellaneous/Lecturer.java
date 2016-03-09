@@ -1,3 +1,5 @@
+package Miscellaneous;
+
 /**
 * A lecturer has both teaching and research responsibilities
 */

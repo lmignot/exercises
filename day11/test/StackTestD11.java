@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * PiJ day 11 - exercise 5
  */
-public class StackTest {
+public class StackTestD11 {
 
     @Test
     public void BasicStackTest () {

@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * PiJ day 12 - exercise 4.2
  */
-public class QueueTest {
+public class QueueTestD12 {
 
     private static final int ONE_THOUSAND = 1000;
 

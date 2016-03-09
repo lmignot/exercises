@@ -1,3 +1,5 @@
+package Phones;
+
 import java.util.*;
 
 /**
@@ -6,12 +8,12 @@ import java.util.*;
  */
 public class MobilePhone extends OldPhone {
 
-    public static final int callLogMemorySize = 10;
+    static final int MAX_LOG = 10;
     private Queue<String> callLog;
 
     public MobilePhone (String brand) {
         super(brand);
-        this.callLog = new PriorityQueue<String>();
+        this.callLog = new LinkedList<>();
     }
 
     /**
@@ -28,14 +30,13 @@ public class MobilePhone extends OldPhone {
      * This implementation simply prints out a line to the screen
      * @param game the game to play
      */
-    private void playGame (String game) {
-        System.out.println("Launching game: " + game);
+    public String playGame (String game) {
+        return "Launching game: " + game;
     }
 
     /**
      * Calls a number and adds it to the call log
      * @param number The number to call
-     * @param callSuper Whether to call the super implementation or not
      */
     @Override
     public void call (String number) {
@@ -47,9 +48,8 @@ public class MobilePhone extends OldPhone {
      * Prints out the logged calls to screen
      */
     public void printCallLog () {
-        Iterator iterator = this.callLog.iterator();
-        while(iterator.hasNext()){
-            System.out.println("Number called: " + (String) iterator.next());
+        for (String next : callLog) {
+            System.out.println("Number called: " + next);
         }
     }
 
@@ -66,8 +66,9 @@ public class MobilePhone extends OldPhone {
      */
     public void addToLog (String number) {
 
-        if (this.callLog.size() >= this.callLogMemorySize) {
+        if (this.getLogSize() >= this.MAX_LOG) {
             this.callLog.poll();
+            this.callLog.add(number);
         } else {
             this.callLog.add(number);
         }

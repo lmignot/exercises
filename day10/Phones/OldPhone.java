@@ -1,3 +1,7 @@
+package Phones;
+
+import Phones.Phone;
+
 /**
  * OldPhone
  * implementation of the Phone interface

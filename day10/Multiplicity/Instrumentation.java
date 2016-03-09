@@ -1,3 +1,5 @@
+package Multiplicity;
+
 public class Instrumentation {
 
     public static void main (String[] args) {

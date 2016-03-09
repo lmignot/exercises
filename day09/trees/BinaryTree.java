@@ -1,3 +1,5 @@
+package trees;
+
 /**
  * BinaryTree class
  * Implemented to handle removing nodes from IntegerTreeNode class

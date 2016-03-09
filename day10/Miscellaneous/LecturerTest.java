@@ -1,3 +1,5 @@
+package Miscellaneous;
+
 public class LecturerTest {
 
     public static void main (String[] args) {

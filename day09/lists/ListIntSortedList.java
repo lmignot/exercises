@@ -1,7 +1,9 @@
+package lists;
+
 public class ListIntSortedList implements IntSortedList {
     private IntItem head;
 
-    public IntSetList () {
+    public ListIntSortedList () {
         this.head = null;
     }
 

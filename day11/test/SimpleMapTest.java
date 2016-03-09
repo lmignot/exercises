@@ -73,10 +73,10 @@ public class SimpleMapTest {
             map.put(String.valueOf(i), i);
         }
 
-        assertEquals(map.size(), 1000);
+        assertEquals(map.size(), ONE_THOUSAND);
 
         map.put("1001", 1001);
 
-        assertEquals(map.size(), 1000);
+        assertEquals(map.size(), ONE_THOUSAND);
     }
 }

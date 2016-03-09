@@ -1,3 +1,5 @@
+package trees;
+
 public class IntegerTreeNode {
     int value;
     IntegerTreeNode left;

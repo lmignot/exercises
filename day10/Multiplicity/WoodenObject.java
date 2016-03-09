@@ -1,3 +1,5 @@
+package Multiplicity;
+
 /**
  * A wooden object that can burn
  */
