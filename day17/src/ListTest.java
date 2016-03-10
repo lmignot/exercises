@@ -21,13 +21,13 @@ public class ListTest {
         list.add(87);
         list.add(145);
         list.add(10);
-        list.get(2);
+        System.out.println("Index 2: " + list.get(2));
         list.add(20);
         list.add(92);
         list.add(89);
         list.add(22);
         list.add(45);
-        list.get(5);
+        System.out.println("Index 5: " + list.get(5));
         list.add(98);
         list.add(56);
         list.add(12);
