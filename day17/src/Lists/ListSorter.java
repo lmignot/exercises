@@ -33,6 +33,7 @@ public class ListSorter implements Runnable {
      * @param status
      */
     public synchronized void setStatus(ListStatus status) {
+        System.out.println("Sorter " + status);
         isSorted = status;
         notifyAll();
     }
