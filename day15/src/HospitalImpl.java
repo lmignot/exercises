@@ -6,7 +6,7 @@ import java.util.List;
  */
 public class HospitalImpl implements Hospital {
 
-    private List<Patient> patients;
+    private List<YoungPatient> patients;
     private String name;
 
     public HospitalImpl (String name) {

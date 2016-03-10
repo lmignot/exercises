@@ -3,13 +3,13 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Testing Patient Implementation
+ * Testing YoungPatient Implementation
  */
 public class PatientTest {
 
     @Test
     public void basePatientTest () {
-        Patient pete = new Patient("Peter Davis", 45, "Gonnorhaea");
+        YoungPatient pete = new YoungPatient("Peter Davis", 45, "Gonnorhaea");
 
         assertThat(pete.getName()).isEqualTo("Peter Davis");
         assertThat(pete.getAge()).isEqualTo(45);
@@ -18,11 +18,11 @@ public class PatientTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void patientShouldThrowIfTooYoung () {
-        Patient young = new Patient("Reverso", -4, "Reverse aging");
+        YoungPatient young = new YoungPatient("Reverso", -4, "Reverse aging");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void patientShouldThrowIfTooOld () {
-        Patient old = new Patient("Way Too Oldio", 198, "Should be dead");
+        YoungPatient old = new YoungPatient("Way Too Oldio", 198, "Should be dead");
     }
 }
