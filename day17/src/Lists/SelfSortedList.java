@@ -1,5 +1,7 @@
 package Lists;
 
+import java.util.StringJoiner;
+
 /**
  * PiJ day 18 - exercise 7.1a<br>
  * A Self-sorting Integer list<br>
@@ -134,16 +136,19 @@ public class SelfSortedList {
         listSorter.setStatus(ListStatus.UNSORTED);
     }
 
+    /**
+     * Prints the contents of the list
+     */
     public void prettyPrint() {
         Node current;
         if (head.getNext() != null) {
-            System.out.print("[");
+            StringJoiner joiner = new StringJoiner(",","[","]");
             current = head.getNext();
             while(current.getNext() != null) {
-                System.out.print(current.getValue() + ",");
+                joiner.add(String.valueOf(current.getValue()));
                 current = current.getNext();
             }
-            System.out.println("]");
+            System.out.println(joiner.toString());
         }
     }
 }
