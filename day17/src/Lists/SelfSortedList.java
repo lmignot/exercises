@@ -18,6 +18,8 @@ package Lists;
  */
 public class SelfSortedList {
 
+    private static final int SORT_INCREMENT = 5;
+
     private ListSorter listSorter;
     private Node head;
     private ListStatus status;
@@ -65,11 +67,15 @@ public class SelfSortedList {
      * @return The value at the given index or -1 if not available
      */
     public Integer getAt(int index) {
-        Node current = head;
+        Node current;
         int i = 0;
         if (index < 0 || index > (size - 1)) {
             return -1;
         }
+        if (head.getNext() == null) {
+            return -1;
+        }
+        current = head.getNext();
         while(current.getNext() != null) {
             if (i == index) {
                 return current.getValue();
@@ -81,15 +87,64 @@ public class SelfSortedList {
     }
 
     public ListStatus sort() {
-        return ListStatus.UNSORTED;
+        Node current;
+        // If there's only HEAD, it's sorted
+        if (head.getNext() == null) {
+            return ListStatus.SORTED;
+        }
+        current = head.getNext();
+        int sortInc = 0;
+        while (current.getNext() != null && sortInc < SORT_INCREMENT) {
+            if (current.getValue() > current.getNext().getValue()) {
+                int swap = current.getValue();
+                current.setValue(current.getNext().getValue());
+                current.getNext().setValue(swap);
+                sortInc++;
+            }
+            current = current.getNext();
+        }
+        ListStatus check = ListStatus.SORTED;
+        current = head.getNext();
+        while (current.getNext() != null) {
+            if (current.getValue() > current.getNext().getValue()) {
+                check = ListStatus.UNSORTED;
+            }
+            current = current.getNext();
+        }
+        return check;
     }
 
     public ListStatus getStatus() {
         return status;
     }
 
+    /**
+     * Since this sorter is running a thread
+     * &ndash; this allows us to tell it to stop.
+     *
+     * @param status Should be either ListStatus.RUNNING
+     *               or ListStatus.STOPPED;
+     * @throws IllegalArgumentException if the status is incorrect
+     */
     public void setStatus(ListStatus status) {
+        if (status != ListStatus.RUNNING && status != ListStatus.STOPPED) {
+            throw new IllegalArgumentException();
+        }
         this.status = status;
+        listSorter.setStatus(ListStatus.UNSORTED);
+    }
+
+    public void prettyPrint() {
+        Node current;
+        if (head.getNext() != null) {
+            System.out.print("[");
+            current = head.getNext();
+            while(current.getNext() != null) {
+                System.out.print(current.getValue() + ",");
+                current = current.getNext();
+            }
+            System.out.println("]");
+        }
     }
 }
 

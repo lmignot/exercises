@@ -48,6 +48,7 @@ public class ListSorter implements Runnable {
                 listToSort.getStatus() == ListStatus.RUNNING) {
             // The list is sorted so wait until notified...
             while (isSorted == ListStatus.SORTED) {
+                System.out.println("Sorter waiting...");
                 try {
                     wait();
                 } catch (InterruptedException ex) {
@@ -56,6 +57,7 @@ public class ListSorter implements Runnable {
             }
             // tell the list to sort and
             // check if it finished sorting
+            System.out.println("Sorter sorting...");
             ListStatus listIsSorted = listToSort.sort();
             if (listIsSorted == ListStatus.SORTED) {
                 isSorted = ListStatus.SORTED;
@@ -78,7 +80,7 @@ public class ListSorter implements Runnable {
                 // nothing to see here... move along
             }
         }
-        // ummm... tell the list to get something
+        // tell the list to get something
         return listToSort.getAt(index);
     }
 }
