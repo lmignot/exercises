@@ -79,5 +79,6 @@ public class ListSorter implements Runnable {
             }
         }
         // ummm... tell the list to get something
+        return listToSort.getAt(index);
     }
 }

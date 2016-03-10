@@ -21,6 +21,7 @@ public class SelfSortedList {
     private ListSorter listSorter;
     private Node head;
     private ListStatus status;
+    private int size = 0;
 
     public SelfSortedList() {
         head = new Node();
@@ -38,10 +39,45 @@ public class SelfSortedList {
         }
         current.setNext(n);
         listSorter.setStatus(ListStatus.UNSORTED);
+        size++;
     }
 
+    /**
+     * Delegates to Sorter so we can check if the list is unsorted
+     * and if not, the sorter will sort the list
+     *
+     * @param index The index of the requested value
+     * @return The value at the given index
+     * @throws IndexOutOfBoundsException if the index is out of bounds
+     */
     public Integer get(int index) {
+        if (index < 0 || index > (size - 1)) {
+            throw new IndexOutOfBoundsException();
+        }
         return listSorter.get(index);
+    }
+
+    /**
+     * Once sorter has determined that the list is sorted
+     * it will call this method... I think. Need to test
+     *
+     * @param index The index of the requested value
+     * @return The value at the given index or -1 if not available
+     */
+    public Integer getAt(int index) {
+        Node current = head;
+        int i = 0;
+        if (index < 0 || index > (size - 1)) {
+            return -1;
+        }
+        while(current.getNext() != null) {
+            if (i == index) {
+                return current.getValue();
+            }
+            current = current.getNext();
+            i++;
+        }
+        return -1;
     }
 
     public ListStatus sort() {
