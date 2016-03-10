@@ -44,7 +44,23 @@ public class ListSorter implements Runnable {
      */
     @Override
     public synchronized void run() {
-
+        while (isSorted == ListStatus.UNSORTED ||
+                listToSort.getStatus() == ListStatus.RUNNING) {
+            // The list is sorted so wait until notified...
+            while (isSorted == ListStatus.SORTED) {
+                try {
+                    wait();
+                } catch (InterruptedException ex) {
+                    // nada
+                }
+            }
+            // tell the list to sort and
+            // check if it finished sorting
+            ListStatus listIsSorted = listToSort.sort();
+            if (listIsSorted == ListStatus.SORTED) {
+                isSorted = ListStatus.SORTED;
+            }
+        }
     }
 
     /**
@@ -55,6 +71,13 @@ public class ListSorter implements Runnable {
      * @return the value at the given index
      */
     public synchronized int get(int index) {
-
+        while(isSorted != ListStatus.SORTED) {
+            try {
+                wait();
+            } catch (InterruptedException ex) {
+                // nothing to see here... move along
+            }
+        }
+        // ummm... tell the list to get something
     }
 }
