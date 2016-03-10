@@ -39,14 +39,15 @@ public class ListSorter implements Runnable {
     }
 
     /**
-     * Runs the sorter. Check if the List is RUNNING<br>
-     * If it is, check if the status is UNSORTED<br>
+     * Runs the sorter so long as it is UNSORTED
+     * and RUNNING
+     *
      * If UNSORTED, do some sorting
      */
     @Override
     public synchronized void run() {
-        while (isSorted == ListStatus.UNSORTED ||
-                listToSort.getStatus() == ListStatus.RUNNING) {
+        while (isSorted != ListStatus.SORTED ||
+                listToSort.getStatus() != ListStatus.STOPPED) {
             // The list is sorted so wait until notified...
             while (isSorted == ListStatus.SORTED) {
                 System.out.println("Sorter waiting...");
@@ -61,7 +62,7 @@ public class ListSorter implements Runnable {
             System.out.println("Sorter sorting...");
             ListStatus listIsSorted = listToSort.sort();
             if (listIsSorted == ListStatus.SORTED) {
-                isSorted = ListStatus.SORTED;
+                setStatus(ListStatus.SORTED);
             }
         }
     }
