@@ -1,3 +1,0 @@
-grant codeBase "file:/Users/lmignot/School/ProgrammingInJava/exercises/day21/src" {
-    permission java.security.AllPermission;
-};

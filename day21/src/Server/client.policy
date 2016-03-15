@@ -1,0 +1,4 @@
+grant codeBase "file:/Users/lmignot/School/ProgrammingInJava/exercises/day21/src/Server" {
+    permission java.security.AllPermission;
+    permission java.security.SocketPermission "*:1024-", "accept, resolve";
+};
