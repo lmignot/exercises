@@ -77,4 +77,11 @@ public class TransformTest {
         List<String> result = ElementUtils.transformList(intListA, String::valueOf);
         System.out.printf(message, "numbers,", "they're strings now, but it's hard to tell", result);
     }
+
+    @Test
+    public void numbersAdding10 () {
+        System.out.println("Before transformation: " + Arrays.asList(intListA));
+        List<Integer> result = ElementUtils.transformList(intListA, i -> i + 10);
+        System.out.printf(message, "numbers,", "added 10 to each", result);
+    }
 }

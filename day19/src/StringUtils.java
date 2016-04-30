@@ -36,14 +36,14 @@ public class StringUtils {
     }
 
     /**
-     * Transforms a List of strings
+     * Transforms a List
      *
-     * @param input the List of Strings to operate on
-     * @param fn the Function to apply to each String
-     * @return a new List containing all Strings in input with the fn applied
+     * @param input the List to operate on
+     * @param fn the Function to apply to each element in the List
+     * @return a new List containing all elements in input with the fn applied
      */
-    public static List<String> transformList (List<String> input, Function<String,String> fn) {
-        return input.stream().map(s -> fn.apply(s)).collect(Collectors.toList());
+    public static <T> List<T> transformList (List<T> input, Function<T,T> fn) {
+        return input.stream().map(fn).collect(Collectors.toList());
     }
 
 }
